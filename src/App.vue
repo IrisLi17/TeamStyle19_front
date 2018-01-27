@@ -6,8 +6,12 @@
 </template>
 
 <script>
+import MyButton from './components/MyButton'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    MyButton
+  }
 }
 </script>
 
@@ -19,5 +23,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+my-button{
+  width:200px;
 }
 </style>
