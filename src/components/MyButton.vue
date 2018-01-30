@@ -1,14 +1,28 @@
 <template>
-  <button>
+  <button v-bind:style="buttonStyle">
       {{text}}
   </button>
 </template>
 <script>
     export default{
         props: {
-            text: String
+            text: {
+                type: String,
+                required: true
+                },
+            buttonHeight: Number,
+            buttonWidth: Number
+        },
+        computed: {
+            buttonStyle: function(){
+                return{
+                    width: this.buttonHeight + 'px', //set width
+                    height: this.buttonWidth + 'px' //set height
+                }
+            }
         }
     }
+    
 </script>
 
 <style lang="scss" scoped>
