@@ -3,20 +3,18 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './vuex'
 
 // 后端接口抽象成Resource
 import VueResource from 'vue-resource'
 
-// 管理状态
-import Vuex from 'vuex'
-
 Vue.config.productionTip = false
 Vue.use(VueResource)
-Vue.use(Vuex)
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
   components: { App }

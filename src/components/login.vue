@@ -5,6 +5,7 @@
     <p>密码</p>
     <input v-model="password" type="password">
     <button v-on:click="login" class="submit">提交</button>
+    <p>Count: {{ count }}</p>
   </div>
 </template>
 
@@ -13,22 +14,24 @@ import authSrv from '@/api/auth.js'
 export default {
   name: 'Login',
   data () {
-    return {
-
-    }
+    return {}
   },
-  components: {
-
+  components: {},
+  computed: {
+    count () {
+      return this.$store.state.count
+    }
   },
   methods: {
     login () {
+      this.$store.commit('increment')
       const {username, password, $router} = this
       const data = {
         name: username,
         pwd: password
       }
-      console.log(username)
       authSrv
+        // .register(this, data)
         .query(this, data)
         .then(rep => {
           // success call back
@@ -41,7 +44,7 @@ export default {
           }
         }, rep => {
           // error call back
-          alert(rep.code)
+          alert('error')
         })
     }
   }
