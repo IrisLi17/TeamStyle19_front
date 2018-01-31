@@ -1,4 +1,4 @@
-const API_URL = 'api/auth'
+const API_URL = '/#/api/login'
 
 export default {
   name: 'authSrv',
@@ -21,12 +21,13 @@ export default {
       params: data // 登录信息
     }).then(response => {
       // success call back
-      context.$store.commit('updataUserInfo')
+      context.$store.commit('updateUserInfo')
+      console.log(response)
       alert('登录成功')
     }, response => {
       // fail call back
       // context.data做出改变
-      alert(response.msg) // msg假设为错误提示
+      alert(response.url) // msg假设为错误提示
     })
   },
   query (context, data) {

@@ -33,10 +33,10 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://', // 服务域名
+        target: '123.207.140.186:8002', // 服务域名
         changeOrigin: true,
         pathRewrite: {
-          '^/api': '/api'
+          '^/#/api': '/#'
         }
       }
     },
