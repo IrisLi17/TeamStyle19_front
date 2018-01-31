@@ -31,21 +31,21 @@ export default {
         pwd: password
       }
       authSrv
-        // .register(this, data)
-        .query(this, data)
-        .then(rep => {
+         .login(this, data)
+        //.query(this, data)
+        //.then(rep => {
           // success call back
-          if (!rep.code) {
-            $router.go({
-              name: 'home'
-            })
-          } else {
-            alert(rep.code)
-          }
-        }, rep => {
+          //if (!rep.code) {
+            //$router.go({
+              //name: 'home'
+            //})
+          //} else {
+            //alert(rep.code)
+          //}
+        //}, rep => {
           // error call back
-          alert('error')
-        })
+          //alert('error')
+        //})
     }
   }
 }
