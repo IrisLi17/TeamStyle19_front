@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1> {{message}} </h1>
-    <login></login>
+    <login-reg></login-reg>
     <dish-menu></dish-menu>
   </div>
 </template>

@@ -1,16 +1,17 @@
 <template>
   <div id="app">
     <!--<img src="./assets/logo.png">!-->
-    <router-view/>
+    <login></login>
+    <!--router-view/-->
   </div>
 </template>
 
 <script>
-import MyButton from './components/MyButton'
+import Login from './components/login'
 export default {
   name: 'app',
   components: {
-    MyButton
+    Login
   }
 }
 </script>
