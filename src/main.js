@@ -19,3 +19,19 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+router.beforeEach((to,from,next) => {
+  if (to.matched.some(record => record.meta.requireAuth)) {
+    if(!localStorage.length || 
+      !localStorage.getItem('teamstyle_name') || 
+      !localStorage.getItem('teamstyle_pwd')){
+      next({
+        path: '/login',
+      })
+    } else{
+      next()
+    }
+  } else {
+    next()
+  }
+})
