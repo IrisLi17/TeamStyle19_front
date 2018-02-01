@@ -28,7 +28,7 @@
         <i class="fa fa-envelope fa-lg"></i>
         <input type="email" placeholder="邮箱地址">
       </div>
-      <button>注册</button>
+      <button v-on:click="register">注册</button>
     </div>
     <!--p>Count: {{ count }}</p-->
   </form>
@@ -52,28 +52,26 @@ export default {
   },
   methods: {
     login () {
-      this.$store.commit('increment')
+      // this.$store.commit('increment')
       const {username, password, $router} = this
       const data = {
         name: username,
         pwd: password
       }
+      // console.log(this)
       authSrv
          .login(this, data)
-        //.query(this, data)
-        //.then(rep => {
-          // success call back
-          //if (!rep.code) {
-            //$router.go({
-              //name: 'home'
-            //})
-          //} else {
-            //alert(rep.code)
-          //}
-        //}, rep => {
-          // error call back
-          //alert('error')
-        //})
+    },
+    register () {
+      const {username, password, email} = this
+      const data = {
+        name: username,
+        pwd: password,
+        email: email
+      }
+      authSrv
+        .register (this, data)
+      console.log("trigger register")
     },
     fade1(){
       this.faded1 = false;
