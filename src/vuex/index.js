@@ -4,7 +4,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     count: 1,
-    userInfo: null
+    userInfo: {
+      name: localStorage.getItem('teamstyle_name'),
+      pwd: localStorage.getItem('teamstyle_pwd')
+    }
   },
   getters: {
 
