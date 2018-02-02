@@ -16,7 +16,10 @@ export default new Router({
     {
       path: '/home',
       name: 'MyHome',
-      component: Home
+      component: Home,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/login',
