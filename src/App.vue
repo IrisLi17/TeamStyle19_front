@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <!--<img src="./assets/logo.png">!-->
-    <!--login></login!-->
-    <router-view/>
+    <nav-bar></nav-bar>
+    <!--router-view/-->
   </div>
 </template>
 
 <script>
-import Login from './components/login'
+import NavBar from './components/NavBar'
 export default {
   name: 'app',
   components: {
-    Login
+    NavBar
   }
 }
 </script>
