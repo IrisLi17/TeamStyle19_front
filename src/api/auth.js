@@ -1,4 +1,4 @@
-const API_URL = '/#/api/login'
+const API_URL = '/api/login'
 
 export default {
   name: 'authSrv',
@@ -10,8 +10,8 @@ export default {
     }).then(response => {
       console.log(response.status)
     }, response => {
-      alert(response.url)
-      context.$store.commit('increment')
+      alert(response.status)
+      //context.$store.commit('increment')
     })
   },
   login (context, data) {
@@ -21,32 +21,26 @@ export default {
       params: data // 登录信息
     }).then(response => {
       // success call back      
-      console.log(response)
-      alert('登录成功')
+      console.log(response)      
       if(data.name!=context.$store.state.userInfo.name || data.pwd!=context.$store.state.userInfo.pwd){
         context.$store.commit('updateUserInfo',data)
         localStorage.setItem('teamstyle_name',data.name)
         localStorage.setItem('teamstyle_pwd',data.pwd)
       }
-      context.$router.push('MyHome')
+      alert('登录成功')
+      context.$router.push('home')
     }, response => {
       // fail call back
       // context.data做出改变
-      context.$store.state.userInfo = {
-        name: null,
-        pwd: null
-      }
+      context.$store.commit('clearUserInfo')
       localStorage.removeItem('teamstyle_name')
       localStorage.removeItem('teamstyle_pwd')
-      alert(response.url) // msg假设为错误提示
+      alert(response.status) // msg假设为错误提示
     })
   },
   logout (context) {
     localStorage.clear()
-    context.$store.state.userInfo = {
-      name: null,
-      pwd: null
-    }
+    context.$store.commit('clearUserInfo')
   },
   query (context, data) {
     return context.$http({
