@@ -27,13 +27,16 @@ router.beforeEach((to,from,next) => {
     if(!localStorage.length || 
       !localStorage.getItem('teamstyle_name') || 
       !localStorage.getItem('teamstyle_pwd')){
+      //console.log('catch1')
       next({
         path: '/login',
       })
     } else{
+      //console.log('catch2')
       next()
     }
   } else {
+    //console.log('catch3')
     next()
   }
 })
