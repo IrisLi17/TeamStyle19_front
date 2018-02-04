@@ -1,53 +1,34 @@
 <template>
     <div>
-        <span id="no1">1</span>
-        <span id="no2">2</span>
-        <span id="no3">3</span>
-        <span id="no4">4</span>
-        <span id="log">登陆/注册</span>
+        <el-menu :default-active="activeIndex" mode="horizontal">
+            <el-menu-item index="1"> 选项1 </el-menu-item>
+            <el-menu-item index="2"> 选项2 </el-menu-item>
+            <el-menu-item index="3"> 选项3 </el-menu-item>
+            <el-menu-item index="4"> 选项4 </el-menu-item>
+            <el-menu-item index="5" id="log"> 登录|注册 </el-menu-item>
+        </el-menu>
     </div>
 </template>
 
 <script>
     export default{
-        name: 'NavBar'
+        name: 'NavBar',
+        data(){
+            return{
+                activeIndex:'1'
+            }
+        }
     }
 </script>
 
 <style lang="scss" scoped>
-    template {
-        width: 100%;
-        height: 100%;
-        margin: 0;
+#log{
+    border:none;
+    position: absolute;
+    right: 0;
+    &:visited{
+        color:#909399;
     }
-    div {
-        margin: 0;
-        width: 100%;
-        height: 5%;
-        background: {
-            color: black;
-        }
-        display: flex;
-        display: -webkit-flex; /*Safari*/
-        align-items: center;
-        justify-content: space-between;
-    }
-    span {
-        color: white;
-        line-height: 1;
-        cursor: pointer;
-        &:hover {
-            color:cyan;
-        }
-    }
-    #no1,#no2,#no3{
-        flex-basis: 2%;
-    }
-    #no4 {
-        flex-basis: 80%;
-        text-align: right;
-    }
-    #log {
-        flex-basis: 10%;
-    }
+}
+    
 </style>
