@@ -1,10 +1,10 @@
 <template>
     <div>
-        <a href="/"><span id="no1">1</span></a>
-        <span id="no2">2</span>
+        <router-link to="/"><span id="no1">1</span></router-link>
+        <router-link to="/home"><span id="no2">2</span></router-link>
         <span id="no3">3</span>
         <span id="no4">4</span>
-        <a href="/login"><span id="log">登陆/注册</span></a>
+        <router-link to="/login"><span id="log">登陆/注册</span></router-link>
     </div>
 </template>
 

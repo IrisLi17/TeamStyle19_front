@@ -14,7 +14,9 @@ export default {
       //context.$store.commit('increment')
     })
   },
-  login (context, data) {
+  login (context, data, cb) {
+    var context = context
+    var cb = cb
     return context.$http({
       url: API_URL,
       method: 'get',
@@ -28,15 +30,27 @@ export default {
         localStorage.setItem('teamstyle_pwd',data.pwd)
       }
       alert('登录成功')
-      context.$router.push('home')
+      if(typeof cb == 'function'){
+        console.log('回调')
+        cb(context)
+      }
     }, response => {
       // fail call back
       // context.data做出改变
-      context.$store.commit('clearUserInfo')
+      /*context.$store.commit('clearUserInfo')
       localStorage.removeItem('teamstyle_name')
-      localStorage.removeItem('teamstyle_pwd')
+      localStorage.removeItem('teamstyle_pwd')*/
+      //a test
+      localStorage.setItem('teamstyle_name',data.name)
+      localStorage.setItem('teamstyle_pwd',data.pwd)
+      console.log('更新')
       alert(response.status) // msg假设为错误提示
-    })
+      if(typeof cb == 'function'){
+        console.log('回调')
+        cb(context)
+      }
+      })
+
   },
   logout (context) {
     localStorage.clear()

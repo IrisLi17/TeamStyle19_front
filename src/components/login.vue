@@ -1,5 +1,6 @@
 <template>
-  <form>
+  <!--form!-->
+  <div>
     <div class='title'>
       <span v-on:click="fade1" id="log-but" v-bind:class="{fonts:faded1}">登陆</span>
       <span v-on:click="fade2" id="reg-but" v-bind:class="{fonts:faded2}">注册</span>
@@ -31,7 +32,8 @@
       <button v-on:click="register">注册</button>
     </div>
     <!--p>Count: {{ count }}</p-->
-  </form>
+  <!--/form!-->
+  </div>
 </template>
 
 <script>
@@ -51,8 +53,11 @@ export default {
     }
   },
   methods: {
+    jump (context) {
+      context.$router.push('/home')
+    },
     login () {
-      // this.$store.commit('increment')
+      //console.log('lg')
       const {username, password, $router} = this
       const data = {
         name: username,
@@ -60,7 +65,8 @@ export default {
       }
       // console.log(this)
       authSrv
-         .login(this, data)
+         .login(this, data,this.jump)
+      
     },
     register () {
       const {username, password, email} = this
