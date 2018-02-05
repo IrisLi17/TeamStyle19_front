@@ -29,6 +29,8 @@
     border:none;
     position: absolute;
     right: 0;
+    height: 100%;
+    line-height: 60px;
     &:visited{
         color:#909399;
     }
