@@ -8,6 +8,7 @@ export default {
       method: 'post',
       params: data
     }).then(response => {
+      alert('Congratulations! You have created your account.')
       console.log(response.status)
     }, response => {
       alert(response.status)
