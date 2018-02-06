@@ -1,10 +1,10 @@
 <template>
-    <el-menu :default-active="activeIndex" mode="horizontal">
-        <el-menu-item index="1"><router-link to="/"> index </router-link></el-menu-item>
-        <el-menu-item index="2"><router-link to="/home"> fakehome </router-link></el-menu-item>
-        <el-menu-item index="3"><router-link to="/file"> 文件 </router-link></el-menu-item>
+    <el-menu :default-active="activeIndex" mode="horizontal" router="true">
+        <el-menu-item index="1" router="/"> index </el-menu-item>
+        <el-menu-item index="2" route="/home"> fakehome </el-menu-item>
+        <el-menu-item index="3" route="/file"> 文件 </el-menu-item>
         <el-menu-item index="4"> 选项4 </el-menu-item>
-        <router-link to="/login"><el-menu-item index="5" id="log"> 登录|注册 </el-menu-item></router-link>
+        <el-menu-item index="5" id="log" route="/login"> 登录|注册 </el-menu-item>
     </el-menu>
     <!--router-link to="/"><span id="no1">1</span></router-link>
     <router-link to="/home"><span id="no2">2</span></router-link>
