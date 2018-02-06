@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Home from '@/components/home'
 import Login from '@/components/login'
 import Reg from '@/components/reg'
+import File from '@/components/file'
 
 Vue.use(Router)
 
@@ -32,6 +33,11 @@ export default new Router({
       path: '/reg',
       name: 'Reg',
       component: Reg
+    },
+    {
+      path: '/file',
+      name: 'File',
+      component: File
     }
   ]
 })
