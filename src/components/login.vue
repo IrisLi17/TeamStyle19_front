@@ -9,7 +9,7 @@
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="login" size="medium">登陆</el-button>
-      <p>没有账号？点击注册</p>
+      <router-link to="/reg"><p>没有账号？点击注册</p></router-link>
     </el-form-item>
   </el-form>
 </div>
@@ -93,14 +93,6 @@ export default {
         .register (this, data)
       console.log("trigger register")
     },
-    /*fade1(){
-      this.faded1 = false;
-      this.faded2 = true;
-    },
-    fade2(){
-      this.faded1 = true;
-      this.faded2 = false;
-    }*/
   }
 }
 </script>
