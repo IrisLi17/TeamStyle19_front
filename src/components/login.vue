@@ -13,41 +13,6 @@
     </el-form-item>
   </el-form>
 </div>
-  <!--form!>
-  <div>
-    <div class='title'>
-      <span v-on:click="fade1" id="log-but" v-bind:class="{fonts:faded1}">登陆</span>
-      <span v-on:click="fade2" id="reg-but" v-bind:class="{fonts:faded2}">注册</span>
-    </div>
-    <div class='log-form' v-bind:class="{hide: faded1}">
-      <div class='input-line'>
-        <i class="fa fa-user-circle-o fa-lg"></i>
-        <input v-model="username" type="text" placeholder="用户名">
-      </div>
-      <div class='input-line'>
-        <i class="fa fa-key fa-lg"></i>
-        <input v-model="password" type="password" placeholder="密码">
-      </div>
-      <button v-on:click="login" class="submit">提交</button>
-    </div>
-    <div class='reg-form' v-bind:class="{hide: faded2}">
-      <div class='input-line'>
-        <i class="fa fa-user-circle-o fa-lg"></i>
-        <input v-model="username" type="text" placeholder="用户名">
-      </div>
-      <div class='input-line'>
-        <i class="fa fa-key fa-lg"></i>
-        <input v-model="password" type="password" placeholder="密码">
-      </div>
-      <div class='input-line'>
-        <i class="fa fa-envelope fa-lg"></i>
-        <input type="email" placeholder="邮箱地址">
-      </div>
-      <button v-on:click="register">注册</button>
-    </div>
-    <p>Count: {{ count }}</p>
-  </form>
-  </div-->
 </template>
 
 <script>
@@ -56,8 +21,6 @@ export default {
   name: 'Login',
   data() {
     return{
-      /*faded1: false,
-      faded2: true*/
     }
   },
   components: {},
@@ -98,6 +61,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+template {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
 #wrap {
   width: 50%;
   margin: 40px auto;
@@ -109,70 +75,4 @@ button {
 p {
   font-size: 12px;
 }
-  /*form{
-    width:60%;
-    margin: 0 auto;
-    padding-bottom: 20px;
-    border: {
-      width: 1px;
-      style: dashed;
-      color: black;
-    }
-  }
-  .title{
-    margin: 20px auto;
-    height: 40px;
-  }
-  #log-but, #reg-but{
-    border:none;
-    outline: none;
-    background-color: transparent;
-    display: inline;
-    font-size: 18px;
-  }
-  #log-but{
-    width: 50%;
-    float:left;
-  }
-  #reg-but{
-    width: 50%;
-    float: right;
-  }
-  input {
-    margin: 0 auto;
-    padding: 0;
-    width:calc(100% - 30px);
-    box-sizing: border-box;
-    outline: none;
-    border: none;
-    border-bottom: {
-      color: black;
-      width: 2px;
-      style: solid;
-    }
-  }
-  .input-line{
-    margin: 15px auto;
-    width: 50%;
-    height: 2em;
-  }
-  button{
-    display: block;
-    margin: 0 auto;
-    padding: 0;
-    width: 50%;
-    height: 2em;
-    border:none;
-    outline: none;
-    cursor: pointer;
-  }
-  .hide{
-    display:none;
-  }
-  .non-hide{
-    display: block;
-  }
-  .fonts{
-    font-size: 1.25em;
-  }*/
 </style>
