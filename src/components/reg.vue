@@ -1,14 +1,14 @@
 <template>
   <div id="wrap">
-  <el-form :model="form" label-position="left" label-width="80px">
-    <el-form-item label="邮箱">
-      <el-input></el-input>
+  <el-form :model="form" :rules="rules" ref="form" label-position="left" label-width="80px">
+    <el-form-item label="邮箱" prop="email">
+      <el-input v-model="form.email"></el-input>
     </el-form-item>
-    <el-form-item label="用户名">
-      <el-input v-model="username"></el-input>
+    <el-form-item label="用户名" prop="username">
+      <el-input v-model="form.username"></el-input>
     </el-form-item>
-    <el-form-item label="密码">
-      <el-input v-model="password"></el-input>
+    <el-form-item label="密码" prop="password">
+      <el-input v-model="form.password" type="password"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="login" size="medium">注册</el-button>
@@ -21,6 +21,27 @@
 <script>
 export default {
   name: 'Reg',
+  data(){
+    return{
+      form: {
+        email:'',
+        username:'',
+        password:''
+      },
+      rules:{
+        email: [
+          {required: true, message: '请输入邮箱', trigger:'blur'},
+          { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change' }
+        ],
+        username: [
+          {required: true, message: '请输入用户名', trigger:'blur'}
+        ],
+        password: [
+          {required: true, message: '请输入密码', trigger:'blur'}
+        ]
+      }
+    }
+  }
 }
 </script>
 

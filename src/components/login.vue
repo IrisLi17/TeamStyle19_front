@@ -1,11 +1,11 @@
 <template>
 <div id="wrap">
-  <el-form :model="form" label-position="left" label-width="80px">
-    <el-form-item label="用户名">
-      <el-input v-model="username"></el-input>
+  <el-form :model="form" :rules="rules" ref="form" label-position="left" label-width="80px">
+    <el-form-item label="用户名" prop="username">
+      <el-input v-model="form.username"></el-input>
     </el-form-item>
-    <el-form-item label="密码">
-      <el-input v-model="password" type="password"></el-input>
+    <el-form-item label="密码" prop="password">
+      <el-input v-model="form.password" type="password"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="login" size="medium">登陆</el-button>
@@ -21,6 +21,18 @@ export default {
   name: 'Login',
   data() {
     return{
+      form:{
+        username:'',
+        password:''
+      },
+      rules: {
+        username: [
+          {required: true, message: '请输入用户名'}
+        ],
+        password: [
+          {required: true, message: '请输入密码'}
+        ]
+    }
     }
   },
   components: {},
