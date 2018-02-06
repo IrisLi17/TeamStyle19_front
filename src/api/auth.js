@@ -2,7 +2,7 @@ const API_URL = '/api/login'
 
 export default {
   name: 'authSrv',
-  register (context, data) {
+  register (context, data, cb) {
     return context.$http({
       url: API_URL,
       method: 'post',
@@ -10,14 +10,19 @@ export default {
     }).then(response => {
       alert('Congratulations! You have created your account.')
       console.log(response.status)
+      if(typeof cb == 'function'){
+        cb(context)
+      }
     }, response => {
       alert(response.status)
-      //context.$store.commit('increment')
+      if(typeof cb == 'function'){
+        cb(context)
+      }
     })
   },
   login (context, data, cb) {
-    var context = context
-    var cb = cb
+    //var context = context
+    //var cb = cb
     return context.$http({
       url: API_URL,
       method: 'get',
