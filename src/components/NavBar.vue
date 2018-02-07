@@ -3,7 +3,7 @@
         <el-menu-item index="1" route="/"> index </el-menu-item>
         <el-menu-item index="2" route="/home"> fakehome </el-menu-item>
         <el-menu-item index="3" route="/file"> 文件 </el-menu-item>
-        <el-menu-item index="4"> 选项4 </el-menu-item>
+        <el-menu-item index="4" route="/team"> team </el-menu-item>
         <el-menu-item index="5" id="log" route="/login"> 登录|注册 </el-menu-item>
     </el-menu>
     <!--router-link to="/"><span id="no1">1</span></router-link>
