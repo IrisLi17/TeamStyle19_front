@@ -1,6 +1,6 @@
 <template>
     <el-menu :default-active="activeIndex" mode="horizontal" router="true">
-        <el-menu-item index="1" router="/"> index </el-menu-item>
+        <el-menu-item index="1" route="/"> index </el-menu-item>
         <el-menu-item index="2" route="/home"> fakehome </el-menu-item>
         <el-menu-item index="3" route="/file"> 文件 </el-menu-item>
         <el-menu-item index="4"> 选项4 </el-menu-item>
