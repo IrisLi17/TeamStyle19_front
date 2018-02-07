@@ -1,6 +1,6 @@
 <template>
     <div id="wrap">
-        <el-form ref="form" :model="form" label-width="100px" label-position="left">
+        <el-form :model="form" :rules="rules" ref="form"  label-width="100px" label-position="left">
             <h3>组队</h3>
             <el-form-item label="是否为队长">
                 <el-switch 
@@ -11,10 +11,13 @@
                     inactive-text="否">
                 </el-switch>
             </el-form-item>
-            <el-form-item v-if="form.isteamleader" label="队伍名称">
+            <el-form-item v-if="form.isteamleader" label="队伍名称" prop="teamname">
                 <el-input v-model="form.teamname"></el-input>
             </el-form-item>
-            <el-form-item v-if="!form.isteamleader" label="邀请码">
+            <el-form-item v-if="!form.isteamleader" label="邀请码" prop="invitecode">
+                <el-input v-model="form.invitecode"></el-input>
+            </el-form-item>
+            <el-form-item v-else label="设置邀请码" prop="invitecode">
                 <el-input v-model="form.invitecode"></el-input>
             </el-form-item>
             <el-form-item>
@@ -33,6 +36,22 @@ export default {
               isteamleader: false,
               teamname:'',
               invitecode:''
+          },
+          rules: {
+              teamname: [
+                  {
+                    required: true, 
+                    message: '请输入队伍名称',
+                    trigger: 'blur'
+                    }
+              ],
+              invitecode: [
+                  {
+                    required: true,
+                    message: '请输入邀请码',
+                    trigger: 'blur'
+                  }
+              ]
           }
       }
   }
