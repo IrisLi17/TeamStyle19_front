@@ -8,7 +8,7 @@
       <el-input v-model="form.password" type="password"></el-input>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="login" size="medium">登陆</el-button>
+      <el-button type="primary" @click="login" size="medium">登录</el-button>
       <router-link to="/reg"><p>没有账号？点击注册</p></router-link>
     </el-form-item>
   </el-form>
@@ -46,28 +46,16 @@ export default {
       context.$router.push('/home')
     },
     login () {
-      //console.log('lg')
-      const {username, password, $router} = this
+      console.log('lg')
       const data = {
-        name: username,
-        pwd: password
+        name: this.form.username,
+        pwd: this.form.password
       }
-      // console.log(this)
+      console.log(data)
       authSrv
          .login(this, data,this.jump)
       
-    },
-    register () {
-      const {username, password, email} = this
-      const data = {
-        name: username,
-        pwd: password,
-        email: email
-      }
-      authSrv
-        .register (this, data)
-      console.log("trigger register")
-    },
+    }
   }
 }
 </script>
