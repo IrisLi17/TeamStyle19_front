@@ -9,9 +9,12 @@ import store from './vuex'
 // 后端接口抽象成Resource
 import VueResource from 'vue-resource'
 
+import VueCookies from 'vue-cookies'
 Vue.config.productionTip = false
 Vue.use(VueResource)
 Vue.use(ElementUI)
+Vue.use(VueCookies)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -55,8 +58,8 @@ Vue.http.options.emulateJSON = true
 // 设置 X-CSRFToken
 Vue.http.interceptors.push(function(request, next) {
   if(request.method == 'POST'){
-    request.headers.set('X-CSRFToken', getCookie('csrftoken'))
-    console.log(getCookie('csrftoken'))
+    //request.META["CSRF_COOKIE_USED"] = 'True'
+    request.headers.set('X-CSRFToken', 'qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwer')
   }
   next()
 })
