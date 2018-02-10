@@ -21,13 +21,14 @@
                 <el-input v-model="form.invitecode"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary">确定</el-button>
+                <el-button type="primary" @click="onSubmit">确定</el-button>
             </el-form-item>
         </el-form>
     </div>
 </template>
 
 <script>
+import teamSrv from '@/api/team.js'
 export default {
   name: 'team',
   data(){
@@ -54,7 +55,22 @@ export default {
               ]
           }
       }
-  }
+  },
+  methods: {
+	  onSubmit() {
+      
+        // 已登录
+        
+        if(this.form.isteamleader) {
+          teamSrv
+            .createTeam(this,data)
+        } else {
+          teamSrv
+            .checkCode(this,data)
+        }
+      }
+    }
+  
 }
 </script>
 
