@@ -1,4 +1,4 @@
-const API_URL = '/backend/students'
+const API_URL = '/backend/students/'
 
 export default {
   name: 'authSrv',
@@ -11,11 +11,11 @@ export default {
     console.log(data)
     return context.$http({
       url: API_URL,
-      method: 'GET',
+      method: 'POST',
       body: data
     }).then(response => {
       alert('Congratulations! You have created your account.')
-      console.log(response.status)
+      console.log(response)
       if(typeof cb == 'function'){
         cb(context)
       }
@@ -35,7 +35,7 @@ export default {
     console.log(data)
     return context.$http({
       url: API_URL,
-      method: 'get',
+      method: 'GET',
       body:data,
       params: data.name // 登录信息
     }).then(response => {
