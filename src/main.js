@@ -24,9 +24,7 @@ new Vue({
 
 router.beforeEach((to,from,next) => {
   if (to.matched.some(record => record.meta.requireAuth)) {
-    if(!localStorage.length || 
-      localStorage.getItem('teamstyle_name')=='undefined' || 
-      localStorage.getItem('teamstyle_pwd')=='undefined'){
+    if(!localStorage.getItem('teamstyle_id')){
       //console.log('catch1')
       next({
         path: '/login',

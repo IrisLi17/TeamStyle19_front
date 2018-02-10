@@ -46,14 +46,8 @@ export default {
   methods: {
     register () {
       console.log('reg')
-      const data = {
-        name: this.form.username,
-        pwd: this.form.password,
-        email: this.form.email
-      }
-      console.log(data)
       authSrv
-        .register(this,data,this.jump)
+        .register(this,this.jump)
     },
     jump (context) {
       context.$router.push('/login')

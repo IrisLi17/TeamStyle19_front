@@ -1,12 +1,18 @@
-const API_URL = '/api/login'
+const API_URL = '/backend/students'
 
 export default {
   name: 'authSrv',
-  register (context, data, cb) {
+  register (context,cb) {
+    const data = {
+      name: context.form.username,
+      pwd: context.form.password,
+      email: context.form.email
+    }
+    console.log(data)
     return context.$http({
       url: API_URL,
-      method: 'post',
-      params: data
+      method: 'GET',
+      body: data
     }).then(response => {
       alert('Congratulations! You have created your account.')
       console.log(response.status)
@@ -14,27 +20,29 @@ export default {
         cb(context)
       }
     }, response => {
+      console.log(response)
       alert(response.status)
-      if(typeof cb == 'function'){
-        cb(context)
-      }
+      context.form.email = ''
+      context.form.username = ''
+      context.form.password = ''
     })
   },
-  login (context, data, cb) {
-    //var context = context
-    //var cb = cb
+  login (context, cb) {
+    const data = {
+      name: context.form.username,
+      pwd: context.form.password
+    }
+    console.log(data)
     return context.$http({
       url: API_URL,
       method: 'get',
-      params: data // 登录信息
+      body:data,
+      params: data.name // 登录信息
     }).then(response => {
       // success call back      
       console.log(response)      
-      if(data.name!=context.$store.state.userInfo.name || data.pwd!=context.$store.state.userInfo.pwd){
-        context.$store.commit('updateUserInfo',data)
-        localStorage.setItem('teamstyle_name',data.name)
-        localStorage.setItem('teamstyle_pwd',data.pwd)
-      }
+      context.$store.commit('updateUserInfo',data)
+      localStorage.setItem('teamstyle_id',response.body.userid) //最好改成id
       alert('登录成功')
       if(typeof cb == 'function'){
         console.log('回调')
@@ -42,22 +50,15 @@ export default {
       }
     }, response => {
       // fail call back
-      // context.data做出改变
-      /*context.$store.commit('clearUserInfo')
-      localStorage.removeItem('teamstyle_name')
-      localStorage.removeItem('teamstyle_pwd')*/
-      //a test
-      localStorage.setItem('teamstyle_name',data.name)
-      localStorage.setItem('teamstyle_pwd',data.pwd)
+      context.$store.commit('clearUserInfo')
+      localStorage.removeItem('teamstyle_id')
+      alert(response.body.msg) // msg假设为错误提示
+      context.form.username = ''
+      context.form.password = ''
       console.log('更新')
-      alert(response.status) // msg假设为错误提示
-      if(typeof cb == 'function'){
-        console.log('回调')
-        cb(context)
-      }
-      })
-
+    })
   },
+
   logout (context) {
     localStorage.clear()
     context.$store.commit('clearUserInfo')

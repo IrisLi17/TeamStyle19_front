@@ -47,13 +47,8 @@ export default {
     },
     login () {
       console.log('lg')
-      const data = {
-        name: this.form.username,
-        pwd: this.form.password
-      }
-      console.log(data)
       authSrv
-         .login(this, data,this.jump)
+         .login(this,this.jump)
       
     }
   }

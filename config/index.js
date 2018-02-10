@@ -32,11 +32,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {
+      '/backend': {
         target: '123.207.140.186', // 服务域名
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''
+          '^/backend': '/backend'
         }
       }
     },
