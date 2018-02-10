@@ -38,3 +38,25 @@ router.beforeEach((to,from,next) => {
     next()
   }
 })
+
+// 取 cookie 
+function getCookie(name) {
+  let arr,
+      reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)")
+  console.log(document.cookie)
+  if(arr=window.document.cookie.match(reg)) {
+    return decodeURIComponent(arr[2])
+  }
+}
+
+// 设置 POST 请求时 的 data 格式
+Vue.http.options.emulateJSON = true
+
+// 设置 X-CSRFToken
+Vue.http.interceptors.push(function(request, next) {
+  if(request.method == 'POST'){
+    request.headers.set('X-CSRFToken', getCookie('csrftoken'))
+    console.log(getCookie('csrftoken'))
+  }
+  next()
+})
