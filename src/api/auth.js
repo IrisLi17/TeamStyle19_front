@@ -8,11 +8,16 @@ export default {
       pwd: context.form.password,
       email: context.form.email
     }
+    var cookie = document.cookie
     console.log(data)
+    console.log(document.cookie)
+    var csrf = cookie.slice(cookie.search('csrftoken'))
     return context.$http({
       url: API_URL,
       method: 'POST',
-      body: data
+      headers: {'X-CSRFToken':csrf},
+      body: data,
+      emulateJSON: true
     }).then(response => {
       alert('Congratulations! You have created your account.')
       console.log(response)
@@ -20,7 +25,6 @@ export default {
         cb(context)
       }
     }, response => {
-      console.log(response)
       alert(response.status)
       context.form.email = ''
       context.form.username = ''
