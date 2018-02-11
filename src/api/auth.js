@@ -13,16 +13,23 @@ export default {
     console.log(document.cookie)
     var csrf = cookie.slice(cookie.search('csrftoken'))
     return context.$http({
-      url: API_URL,
+      url: API_URL + 'reg/',
       method: 'POST',
       headers: {'X-CSRFToken':csrf},
       body: data,
       emulateJSON: true
     }).then(response => {
-      alert('Congratulations! You have created your account.')
-      console.log(response)
-      if(typeof cb == 'function'){
-        cb(context)
+      if(response.body.success == true){
+        alert('Congratulations! You have created your account.')
+        console.log(response)
+        if(typeof cb == 'function'){
+          cb(context)
+        }
+      } else {
+        alert(response.body.message)
+        context.form.email = ''
+        context.form.username = ''
+        context.form.password = ''
       }
     }, response => {
       alert(response.status)
@@ -38,25 +45,31 @@ export default {
     }
     console.log(data)
     return context.$http({
-      url: API_URL,
-      method: 'GET',
-      body:data,
-      params: data.name // 登录信息
+      url: API_URL+'login/',
+      method: 'POST',
+      body:data
     }).then(response => {
-      // success call back      
-      console.log(response)      
-      context.$store.commit('updateUserInfo',data)
-      localStorage.setItem('teamstyle_id',response.body.userid) //最好改成id
-      alert('登录成功')
-      if(typeof cb == 'function'){
-        console.log('回调')
-        cb(context)
+      // success call back  
+      if(response.body.success == true){
+        console.log(response.body.post) 
+        context.$store.commit('updateUserInfo',data)
+        //localStorage.setItem('teamstyle_id',response.body.post['name']) //最好改成id
+        alert('登录成功')
+        if(typeof cb == 'function'){
+          console.log('回调')
+          cb(context)
+        }
+      } else {
+        console.log('f')
+        alert(response.body.message)
+        context.form.username = ''
+        context.form.password = ''
       }
     }, response => {
       // fail call back
       context.$store.commit('clearUserInfo')
       localStorage.removeItem('teamstyle_id')
-      alert(response.body.msg) // msg假设为错误提示
+      alert('fail') // msg假设为错误提示
       context.form.username = ''
       context.form.password = ''
       console.log('更新')

@@ -57,9 +57,10 @@ Vue.http.options.emulateJSON = true
 
 // 设置 X-CSRFToken
 Vue.http.interceptors.push(function(request, next) {
-  if(request.method == 'POST'){
+  if(request.url == '/backend/students/reg/'||request.url == '/backend/students/login/'){
+    //console.log(request)
     //request.META["CSRF_COOKIE_USED"] = 'True'
-    request.headers.set('X-CSRFToken', 'qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwer')
+    //request.headers.set('X-CSRFToken', 'qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwer')
   }
   next()
 })
