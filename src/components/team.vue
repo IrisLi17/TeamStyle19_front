@@ -24,6 +24,7 @@
                 <el-button type="primary" @click="onSubmit">确定</el-button>
             </el-form-item>
         </el-form>
+        <router-link to="/ShowAllTeams"><a>查看所有队伍</a></router-link>
     </div>
 </template>
 
@@ -88,5 +89,8 @@ h1{
 }
 button {
   width: 100%;
+}
+a {
+    font-size: 12px;
 }
 </style>

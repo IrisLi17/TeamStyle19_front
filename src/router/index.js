@@ -6,6 +6,7 @@ import Login from '@/components/login'
 import Reg from '@/components/reg'
 import File from '@/components/file'
 import Team from '@/components/team'
+import ShowAllTeams from '@/components/ShowAllTeams'
 
 Vue.use(Router)
 
@@ -44,6 +45,11 @@ export default new Router({
       path: '/team',
       name: 'Team',
       component: Team
+    },
+    {
+      path: '/ShowAllTeams',
+      name: 'ShowAllTeams',
+      component: ShowAllTeams
     }
   ]
 })
