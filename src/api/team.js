@@ -65,7 +65,11 @@ export default {
         body: data,
         //timeout: 1000
       }).then(response => {
-        alert('success')
+        if(response.body.success == true){
+          alert('success')
+        } else {
+          alert(response.body.messge)
+        }
         //jump to my team
       }, response => {
         alert('fail')
@@ -74,20 +78,30 @@ export default {
   },
   
   checkCode (context, data) {
-    if(notLogin()){
+    if(!localStorage.getItem('teamstyle_id')){
       alert('请先登录再进行操作')
       context.$router.push('/login')
     } else{
+      const data = {
+        userid: localStorage.getItem('teamstyle_id'), // 用户id
+        invitecode: context.form.invitecode
+      }
       context.$http({
         url: TEAM_URL+'join/', // 校验验证码
         method: 'post',
-        params: data,
+        body: data,
         timeout: 1000
       }).then(response => {
+        if(response.body.success == true){
+          alert('success')
+        } else{
+          alert(response.body.message)
+        }
         //jump to my team
       }, response => {
+        console.log(response)
         // 校验失败
-        alert(response.msg)
+        alert('fail')
       })
     }
   },
