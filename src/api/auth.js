@@ -53,7 +53,7 @@ export default {
       if(response.body.success == true){
         console.log(response.body.post) 
         context.$store.commit('updateUserInfo',data)
-        //localStorage.setItem('teamstyle_id',response.body.post['name']) //最好改成id
+        localStorage.setItem('teamstyle_id',response.body.id) //最好改成id
         alert('登录成功')
         if(typeof cb == 'function'){
           console.log('回调')
