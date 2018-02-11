@@ -57,18 +57,16 @@ export default {
       }
   },
   methods: {
-	  onSubmit() {
-      
-        // 已登录
-        
-        if(this.form.isteamleader) {
-          teamSrv
-            .createTeam(this,data)
-        } else {
-          teamSrv
-            .checkCode(this,data)
+	    onSubmit() {
+            if(this.form.isteamleader) {
+                console.log('start create')
+                teamSrv
+                    .createTeam(this)
+            } else {
+                teamSrv
+                    .checkCode(this)
+            }
         }
-      }
     }
   
 }

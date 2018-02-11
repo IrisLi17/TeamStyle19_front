@@ -1,5 +1,5 @@
-const TEAM_URL = 'backend/teams'
-const USER_URL = 'backend/students' // 后可再加子域名
+const TEAM_URL = 'backend/teams/'
+const USER_URL = 'backend/students/' // 后可再加子域名
 
 export default {
   name: 'teamSrv',
@@ -60,14 +60,15 @@ export default {
         invitecode: context.form.invitecode
       }
       context.$http({
-        url: TEAM_URL,
+        url: TEAM_URL+'add/',
         method: 'post',
         body: data,
         //timeout: 1000
       }).then(response => {
+        alert('success')
         //jump to my team
       }, response => {
-        alert(response.body.msg)
+        alert('fail')
       })
     }
   },
@@ -78,8 +79,8 @@ export default {
       context.$router.push('/login')
     } else{
       context.$http({
-        url: TEAM_URL, // 校验验证码
-        method: 'get',
+        url: TEAM_URL+'join/', // 校验验证码
+        method: 'post',
         params: data,
         timeout: 1000
       }).then(response => {
