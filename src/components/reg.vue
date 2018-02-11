@@ -11,14 +11,15 @@
       <el-input v-model="form.password" type="password"></el-input>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="login" size="medium">注册</el-button>
-      <router-link to="/login"><p>已有账号？点击登陆</p></router-link>
+      <el-button type="primary" @click="register" size="medium">注册</el-button>
+      <router-link to="/login"><p>已有账号？点击登录</p></router-link>
     </el-form-item>
   </el-form>
 </div>
 </template>
 
 <script>
+import authSrv from '@/api/auth.js'
 export default {
   name: 'Reg',
   data(){
@@ -40,6 +41,16 @@ export default {
           {required: true, message: '请输入密码', trigger:'blur'}
         ]
       }
+    }
+  },
+  methods: {
+    register () {
+      console.log('reg')
+      authSrv
+        .register(this,this.jump)
+    },
+    jump (context) {
+      context.$router.push('/login')
     }
   }
 }

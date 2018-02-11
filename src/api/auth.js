@@ -1,58 +1,81 @@
-const API_URL = '/api/login'
+const API_URL = '/backend/students/'
 
 export default {
   name: 'authSrv',
-  register (context, data) {
+  register (context,cb) {
+    const data = {
+      name: context.form.username,
+      pwd: context.form.password,
+      email: context.form.email
+    }
+    var cookie = document.cookie
+    console.log(data)
+    console.log(document.cookie)
+    var csrf = cookie.slice(cookie.search('csrftoken'))
     return context.$http({
-      url: API_URL,
-      method: 'post',
-      params: data
+      url: API_URL + 'reg/',
+      method: 'POST',
+      headers: {'X-CSRFToken':csrf},
+      body: data,
+      emulateJSON: true
     }).then(response => {
-      alert('Congratulations! You have created your account.')
-      console.log(response.status)
+      if(response.body.success == true){
+        alert('Congratulations! You have created your account.')
+        console.log(response)
+        if(typeof cb == 'function'){
+          cb(context)
+        }
+      } else {
+        alert(response.body.message)
+        context.form.email = ''
+        context.form.username = ''
+        context.form.password = ''
+      }
     }, response => {
       alert(response.status)
-      //context.$store.commit('increment')
+      context.form.email = ''
+      context.form.username = ''
+      context.form.password = ''
     })
   },
-  login (context, data, cb) {
-    var context = context
-    var cb = cb
+  login (context, cb) {
+    const data = {
+      name: context.form.username,
+      pwd: context.form.password
+    }
+    console.log(data)
     return context.$http({
-      url: API_URL,
-      method: 'get',
-      params: data // 登录信息
+      url: API_URL+'login/',
+      method: 'POST',
+      body:data
     }).then(response => {
-      // success call back      
-      console.log(response)      
-      if(data.name!=context.$store.state.userInfo.name || data.pwd!=context.$store.state.userInfo.pwd){
+      // success call back  
+      if(response.body.success == true){
+        console.log(response.body.post) 
         context.$store.commit('updateUserInfo',data)
-        localStorage.setItem('teamstyle_name',data.name)
-        localStorage.setItem('teamstyle_pwd',data.pwd)
-      }
-      alert('登录成功')
-      if(typeof cb == 'function'){
-        console.log('回调')
-        cb(context)
+        //localStorage.setItem('teamstyle_id',response.body.post['name']) //最好改成id
+        alert('登录成功')
+        if(typeof cb == 'function'){
+          console.log('回调')
+          cb(context)
+        }
+      } else {
+        console.log('f')
+        alert(response.body.message)
+        context.form.username = ''
+        context.form.password = ''
       }
     }, response => {
       // fail call back
-      // context.data做出改变
-      /*context.$store.commit('clearUserInfo')
-      localStorage.removeItem('teamstyle_name')
-      localStorage.removeItem('teamstyle_pwd')*/
-      //a test
-      localStorage.setItem('teamstyle_name',data.name)
-      localStorage.setItem('teamstyle_pwd',data.pwd)
+      context.$store.commit('clearUserInfo')
+      localStorage.removeItem('teamstyle_id')
+      alert('fail') // msg假设为错误提示
+      context.form.username = ''
+      context.form.password = ''
       console.log('更新')
-      alert(response.status) // msg假设为错误提示
-      if(typeof cb == 'function'){
-        console.log('回调')
-        cb(context)
-      }
-      })
-
+    })
   },
+
   logout (context) {
     localStorage.clear()
     context.$store.commit('clearUserInfo')

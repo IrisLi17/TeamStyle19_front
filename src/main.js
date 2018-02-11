@@ -9,9 +9,12 @@ import store from './vuex'
 // 后端接口抽象成Resource
 import VueResource from 'vue-resource'
 
+import VueCookies from 'vue-cookies'
 Vue.config.productionTip = false
 Vue.use(VueResource)
 Vue.use(ElementUI)
+Vue.use(VueCookies)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -24,9 +27,7 @@ new Vue({
 
 router.beforeEach((to,from,next) => {
   if (to.matched.some(record => record.meta.requireAuth)) {
-    if(!localStorage.length || 
-      localStorage.getItem('teamstyle_name')=='undefined' || 
-      localStorage.getItem('teamstyle_pwd')=='undefined'){
+    if(!localStorage.getItem('teamstyle_id')){
       //console.log('catch1')
       next({
         path: '/login',
@@ -39,4 +40,27 @@ router.beforeEach((to,from,next) => {
     //console.log('catch3')
     next()
   }
+})
+
+// 取 cookie 
+function getCookie(name) {
+  let arr,
+      reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)")
+  console.log(document.cookie)
+  if(arr=window.document.cookie.match(reg)) {
+    return decodeURIComponent(arr[2])
+  }
+}
+
+// 设置 POST 请求时 的 data 格式
+Vue.http.options.emulateJSON = true
+
+// 设置 X-CSRFToken
+Vue.http.interceptors.push(function(request, next) {
+  if(request.url == '/backend/students/reg/'||request.url == '/backend/students/login/'){
+    //console.log(request)
+    //request.META["CSRF_COOKIE_USED"] = 'True'
+    //request.headers.set('X-CSRFToken', 'qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwer')
+  }
+  next()
 })
