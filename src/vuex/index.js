@@ -7,7 +7,9 @@ export default new Vuex.Store({
     userInfo: {
       name: localStorage.getItem('teamstyle_name'),
       pwd: localStorage.getItem('teamstyle_pwd')
-    }
+    },
+    teamindex: null,
+    isLeader: null
   },
   getters: {
 
@@ -25,6 +27,14 @@ export default new Vuex.Store({
     clearUserInfo (state) {
       state.userInfo = null
       console.log('User Logout')
+    },
+    setTeamindex (state, payload) {
+      state.teamindex = payload
+      console.log('set teamindex to '+state.teamindex)
+    },
+    setisLeader (state, payload) {
+      state.isLeader = payload
+      console.log('isLeader: '+state.isLeader)
     }
   }
 })

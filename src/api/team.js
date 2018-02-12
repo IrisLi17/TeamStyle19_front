@@ -9,13 +9,37 @@ export default {
   showAll (context) {
     console.log('loading')
     context.$http({
-      url: TEAM_URL,
+      url: TEAM_URL+'allteam',
       method: 'get',
     }).then(response => {
-      context.teamlist = response.body.teams
-      console.log('success')
+      context.team = []
+      context.teamid = []
+      for(var i in response.body){
+        context.team.push({
+          teamname: response.body[i].teamname,
+          teamleader: response.body[i].leader,
+          teammember: []
+        })
+        for(var j=1;j<response.body[i].scale;j++){
+          if(response.body[i]["member"+j]) context.team[i].teammember.push(response.body[i]["member"+j])
+        }
+        context.teamid.push(response.body[i].teamid)
+      }
+      console.log(context.teamid)
+      //console.log(context.team)
+      //console.log(response.body)
     }, response => {
       console.log('gg')
+      context.team = [{
+        teamname: 'efsdgrfuioahfioasufhasui',
+        teamleader: '张狗蛋',
+        teammember: ['fake1','fake2','fake3']
+    },
+    {
+        teamname: '阿斯顿v哈稍等v阿达VS的VS v的',
+        teamleader: 'sdv33659d6fgdgf',
+        teammember: []
+    }]
     })
   },
 
@@ -38,11 +62,14 @@ export default {
       context.$router.push('/login')
     } else {
       context.$http({
-        url: USER_URL,
-        method: 'get',
-        params: localStorage.getItem('teamstyle_id')
+        url: USER_URL+'leader/',
+        method: 'POST',
+        body: {
+          userid: localStorage.getItem('teamstyle_id')
+        }
       }).then(response => {
-        context.isLeader = response.body.isleader
+        console.log(response.body)
+        //context.isLeader = response.body.isleader
       }, response => {
         console.log(response.status)
       })
@@ -68,7 +95,7 @@ export default {
         if(response.body.success == true){
           alert('success')
         } else {
-          alert(response.body.messge)
+          alert(response.body.message)
         }
         //jump to my team
       }, response => {
@@ -84,8 +111,10 @@ export default {
     } else{
       const data = {
         userid: localStorage.getItem('teamstyle_id'), // 用户id
+        teamid: context.$store.state.teamindex,
         invitecode: context.form.invitecode
       }
+      console.log(data)
       context.$http({
         url: TEAM_URL+'join/', // 校验验证码
         method: 'post',

@@ -1,28 +1,51 @@
 <template>
 <div>
-  <el-table :data='team' stripe border >
+    <el-button icon="el-icon-plus" type="primary" size="medium" @click="handleCreate">创建队伍</el-button>
+  <el-table :data='team' stripe>
+      <el-table-column type="index" align="center" header-align="center">
+      </el-table-column>
       <el-table-column prop="teamname" label="队伍名称" align="center" header-align="center">
       </el-table-column>
       <el-table-column prop="teamleader" label="队长" align="center" header-align="center">
       </el-table-column>
+      <el-table-column prop="teammember" label="成员" align="center" header-align="center">
+      <template slot-scope="scope">
+          <span style="margin:2px" v-for="item in scope.row.teammember" :key="item">{{item}}</span>
+      </template>
+      </el-table-column>
+      <el-table-column label="操作">
+      <template slot-scope="scope">
+        <el-button
+          size="mini"
+          @click="handleJoin(scope.$index, scope.row)">加入</el-button>
+      </template>
+    </el-table-column>
   </el-table>
-  <router-link to="/team" style="font-size: 12px;"><a>加入队伍</a></router-link>
 </div>
 </template>
 
 <script>
+import teamSrv from '@/api/team.js'
 export default {
   name:'ShowAllTeams',
   data(){
       return{
-          team: [{
-              teamname: 'efsdgrfuioahfioasufhasui',
-              teamleader: '张狗蛋'
-          },
-          {
-              teamname: '阿斯顿v哈稍等v阿达VS的VS v的',
-              teamleader: 'sdv33659d6fgdgf'
-          }]
+          team: [],
+          teamid: []
+      }
+  },
+  created () {
+      teamSrv.showAll(this)
+  },
+  methods:{
+      handleJoin (index,row) {
+          this.$store.commit('setTeamindex',this.teamid[index])
+          this.$store.commit('setisLeader',false)
+          this.$router.push('/team')
+      },
+      handleCreate () {
+          this.$store.commit('setisLeader',true)
+          this.$router.push('/team')
       }
   }
 }

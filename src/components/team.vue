@@ -5,6 +5,7 @@
             <el-form-item label="是否为队长">
                 <el-switch 
                     v-model="form.isteamleader" 
+                    disabled
                     active-color="#13ce66"
                     inactive-color="#ff4949"
                     active-text="是"
@@ -24,6 +25,7 @@
                 <el-button type="primary" @click="onSubmit">确定</el-button>
             </el-form-item>
         </el-form>
+        <el-button @click="testLeader">testLeader</el-button>
         <router-link to="/ShowAllTeams"><a>查看所有队伍</a></router-link>
     </div>
 </template>
@@ -57,6 +59,9 @@ export default {
           }
       }
   },
+  created() {
+      this.form.isteamleader = this.$store.state.isLeader
+  },
   methods: {
 	    onSubmit() {
             if(this.form.isteamleader) {
@@ -67,6 +72,9 @@ export default {
                 teamSrv
                     .checkCode(this)
             }
+        },
+        testLeader() {
+            teamSrv.isLeader(this)
         }
     }
   
