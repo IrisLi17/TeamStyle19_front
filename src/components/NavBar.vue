@@ -31,14 +31,15 @@
                 activeIndex:'1',
                 router:Boolean(1),
                 profile: avatar,
-                hasLogin: Boolean(1),
-                username: '123'
             }
         },
         computed: {
             hasLogin(){
                 return Boolean(this.$store.state.userid!=null)
-            }                
+            },
+            username(){
+                return localStorage.teamstyle_name
+            }               
         },
         created () {
             this.hasLogin = Boolean(localStorage.getItem('teamstyle_id'))
