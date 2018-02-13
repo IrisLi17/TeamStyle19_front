@@ -1,10 +1,10 @@
 <template>
-    <el-menu :default-active="activeIndex" mode="horizontal" router="router">
+    <el-menu :default-active="activeIndex" mode="horizontal" router>
         <el-menu-item index="1" route="/"> index </el-menu-item>
         <el-menu-item index="2" route="/home"> fakehome </el-menu-item>
         <el-menu-item index="3" route="/file"> 文件 </el-menu-item>
         <el-menu-item index="4" route="/ShowAllTeams"> team </el-menu-item>
-        <el-menu-item v-if="hasLogin" index="5" id="profile">
+        <el-menu-item v-if="hasLogin" index="5" route="/UserPage" id="profile">
             <!--el-dropdown @command="logout">
                 <span class="el-dropdown-link">
                     <img :src="profile">
@@ -15,7 +15,7 @@
                 </el-dropdown-menu>
             </el-dropdown-->
             <router-link to="/UserPage"><span> {{username}} </span></router-link>
-            <span @click = "logout"> 退出 </span>
+            <router-link to="/"><span @click = "logout"> 退出 </span></router-link>
         </el-menu-item>
         <el-menu-item v-else index="5" id="log" route="/login"> 登录|注册 </el-menu-item>
     </el-menu>
@@ -31,14 +31,16 @@
                 activeIndex:'1',
                 router:Boolean(1),
                 profile: avatar,
-                hasLogin: Boolean(1),
-                username: '123'
+                //username: '123'
             }
         },
         computed: {
             hasLogin(){
                 return Boolean(this.$store.state.userid!=null)
-            }                
+            },
+            username(){
+                return this.$store.state.username
+            }            
         },
         created () {
             this.hasLogin = Boolean(localStorage.getItem('teamstyle_id'))

@@ -51,8 +51,9 @@ export default {
     }).then(response => {
       // success call back  
       if(response.body.success == true){
-        context.$store.commit('updateUserInfo',response.body.id)
+        context.$store.commit('updateUserInfo',{id:response.body.id,name:data.name})
         localStorage.setItem('teamstyle_id',response.body.id) //最好改成id
+        localStorage.setItem('teamstyle_name',data.name)
         alert('登录成功')
         if(typeof cb == 'function'){
           console.log('回调')
@@ -61,7 +62,10 @@ export default {
       } else {
         console.log('f')
         context.$store.commit('clearUserInfo')
+        context.$store.commit('setTeamindex',null)
+        context.$store.commit('setisLeader',null)
         localStorage.removeItem('teamstyle_id')
+        localStorage.removeItem('teamstyle_name')
         alert(response.body.message)
         context.form.username = ''
         context.form.password = ''
@@ -69,7 +73,10 @@ export default {
     }, response => {
       // fail call back
       context.$store.commit('clearUserInfo')
+      context.$store.commit('setTeamindex',null)
+      context.$store.commit('setisLeader',null)
       localStorage.removeItem('teamstyle_id')
+      localStorage.removeItem('teamstyle_name')
       alert('fail') // msg假设为错误提示
       context.form.username = ''
       context.form.password = ''
@@ -79,7 +86,10 @@ export default {
 
   logout (context) {
     localStorage.removeItem('teamstyle_id')
+    localStorage.removeItem('teamstyle_name')
     context.$store.commit('clearUserInfo')
+    context.$store.commit('setTeamindex',null)
+    context.$store.commit('setisLeader',null)
   },
   query (context, data) {
     return context.$http({
