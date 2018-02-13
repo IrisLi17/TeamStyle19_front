@@ -4,6 +4,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     userid: localStorage.getItem('teamstyle_id'),
+    username: localStorage.getItem('teamstyle_name'),
     teamindex: null,
     isLeader: null
   },
@@ -17,7 +18,8 @@ export default new Vuex.Store({
       console.log(state.count)
     },
     updateUserInfo (state, payload) {
-      state.userid = payload
+      state.userid = payload.id
+      state.username = payload.name
       console.log(state.userid)
     },
     clearUserInfo (state) {

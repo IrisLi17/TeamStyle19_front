@@ -136,17 +136,24 @@ export default {
   },
 
   removeMember (context) {
+    var membersid = []
+    if(context.test.id1!=null) membersid.push(context.test.id1)
+    if(context.test.id2!=null) membersid.push(context.test.id2)
+    if(context.test.id3!=null) membersid.push(context.test.id3)
     const data = {
-      userid: localStorage.getItem('teamstyle_id'),
-      membersid:[],
+      //userid: localStorage.getItem('teamstyle_id'),
+      userid: membersid[0]
     }
     context.$http({
-      url: TEAM_URL,
+      url: TEAM_URL+'exit/',
       method: 'post',
       body: data
     }).then(response => {
-      context.myteam = response.body.teams
-    },)
+      //context.myteam = response.body.teams
+      alert('success')
+    }, response => {
+      alert('fail')
+    })
   },
   resetCode (context,data){
     context.$http({

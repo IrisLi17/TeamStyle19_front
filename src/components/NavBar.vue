@@ -1,5 +1,5 @@
 <template>
-    <el-menu :default-active="activeIndex" mode="horizontal" router="router">
+    <el-menu :default-active="activeIndex" mode="horizontal" router>
         <el-menu-item index="1" route="/"> index </el-menu-item>
         <el-menu-item index="2" route="/home"> fakehome </el-menu-item>
         <el-menu-item index="3" route="/file"> 文件 </el-menu-item>
@@ -14,8 +14,14 @@
                     <el-dropdown-item>log out</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown-->
-            <router-link to="/UserPage"><span> {{username}} </span></router-link>
-            <span @click = "logout"> 退出 </span>
+            <el-dropdown> 
+                <span> {{username}} </span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>修改密码</el-dropdown-item>
+                    <el-dropdown-item>我的队伍</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+            <router-link to="/"><span @click = "logout"> 退出 </span></router-link>
         </el-menu-item>
         <el-menu-item v-else index="5" id="log" route="/login"> 登录|注册 </el-menu-item>
     </el-menu>
@@ -31,6 +37,7 @@
                 activeIndex:'1',
                 router:Boolean(1),
                 profile: avatar,
+                //username: '123'
             }
         },
         computed: {
@@ -38,8 +45,8 @@
                 return Boolean(this.$store.state.userid!=null)
             },
             username(){
-                return localStorage.teamstyle_name
-            }               
+                return this.$store.state.username
+            }            
         },
         created () {
             this.hasLogin = Boolean(localStorage.getItem('teamstyle_id'))
