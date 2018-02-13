@@ -51,8 +51,7 @@ export default {
     }).then(response => {
       // success call back  
       if(response.body.success == true){
-        console.log(response.body.post) 
-        context.$store.commit('updateUserInfo',data)
+        context.$store.commit('updateUserInfo',response.body.id)
         localStorage.setItem('teamstyle_id',response.body.id) //最好改成id
         alert('登录成功')
         if(typeof cb == 'function'){
@@ -61,6 +60,8 @@ export default {
         }
       } else {
         console.log('f')
+        context.$store.commit('clearUserInfo')
+        localStorage.removeItem('teamstyle_id')
         alert(response.body.message)
         context.form.username = ''
         context.form.password = ''
@@ -77,7 +78,7 @@ export default {
   },
 
   logout (context) {
-    localStorage.clear()
+    localStorage.removeItem('teamstyle_id')
     context.$store.commit('clearUserInfo')
   },
   query (context, data) {

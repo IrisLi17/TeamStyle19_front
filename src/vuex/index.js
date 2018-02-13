@@ -3,11 +3,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
-    count: 1,
-    userInfo: {
-      name: localStorage.getItem('teamstyle_name'),
-      pwd: localStorage.getItem('teamstyle_pwd')
-    },
+    userid: localStorage.getItem('teamstyle_id'),
     teamindex: null,
     isLeader: null
   },
@@ -21,11 +17,11 @@ export default new Vuex.Store({
       console.log(state.count)
     },
     updateUserInfo (state, payload) {
-      state.userInfo = payload
-      console.log(state.userInfo)
+      state.userid = payload
+      console.log(state.userid)
     },
     clearUserInfo (state) {
-      state.userInfo = null
+      state.userid = null
       console.log('User Logout')
     },
     setTeamindex (state, payload) {
