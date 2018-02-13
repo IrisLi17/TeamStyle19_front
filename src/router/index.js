@@ -7,6 +7,7 @@ import Reg from '@/components/reg'
 import File from '@/components/file'
 import Team from '@/components/team'
 import ShowAllTeams from '@/components/ShowAllTeams'
+import PwdChange from '@/components/PwdChange'
 
 Vue.use(Router)
 
@@ -50,6 +51,11 @@ export default new Router({
       path: '/ShowAllTeams',
       name: 'ShowAllTeams',
       component: ShowAllTeams
+    },
+    {
+      path: '/PwdChange',
+      name: 'PwdChange',
+      component: PwdChange
     }
   ]
 })
