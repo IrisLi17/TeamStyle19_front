@@ -24,6 +24,7 @@ export default new Vuex.Store({
     },
     clearUserInfo (state) {
       state.userid = null
+      state.username = null
       console.log('User Logout')
     },
     setTeamindex (state, payload) {

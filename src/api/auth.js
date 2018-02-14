@@ -54,6 +54,7 @@ export default {
         context.$store.commit('updateUserInfo',{id:response.body.id,name:data.name})
         localStorage.setItem('teamstyle_id',response.body.id) //最好改成id
         localStorage.setItem('teamstyle_name',data.name)
+        localStorage.setItem('teamstyle_pwd',data.pwd)
         alert('登录成功')
         if(typeof cb == 'function'){
           console.log('回调')
@@ -61,22 +62,14 @@ export default {
         }
       } else {
         console.log('f')
-        context.$store.commit('clearUserInfo')
-        context.$store.commit('setTeamindex',null)
-        context.$store.commit('setisLeader',null)
-        localStorage.removeItem('teamstyle_id')
-        localStorage.removeItem('teamstyle_name')
+        this.logout(context)
         alert(response.body.message)
         context.form.username = ''
         context.form.password = ''
       }
     }, response => {
       // fail call back
-      context.$store.commit('clearUserInfo')
-      context.$store.commit('setTeamindex',null)
-      context.$store.commit('setisLeader',null)
-      localStorage.removeItem('teamstyle_id')
-      localStorage.removeItem('teamstyle_name')
+      this.logout(context)
       alert('fail') // msg假设为错误提示
       context.form.username = ''
       context.form.password = ''
@@ -87,6 +80,7 @@ export default {
   logout (context) {
     localStorage.removeItem('teamstyle_id')
     localStorage.removeItem('teamstyle_name')
+    localStorage.removeItem('teamstyle_pwd')
     context.$store.commit('clearUserInfo')
     context.$store.commit('setTeamindex',null)
     context.$store.commit('setisLeader',null)
@@ -97,11 +91,24 @@ export default {
       params: data
     })
   },
-  modify (context, data) {
+  modify (context, cb) {
+    const data = {
+      id: localStorage.getItem('teamstyle_id'),
+      oldpwd: localStorage.getItem('teamstyle_pwd'),
+      newpwd: context.form.pwd
+    }
     return context.$http({
-      url: API_URL,
+      url: API_URL+'modify/',
       method: 'post',
-      data: data
+      body: data
+    }).then(response => {
+      console.log(response)
+      this.logout(context)
+      if(typeof cb == 'function'){
+        cb(context)
+      }
+    }, response => {
+      alert('fail')
     })
   }
 }

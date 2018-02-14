@@ -2,6 +2,9 @@
 <div id="wrap">
   <h3>修改密码</h3>
   <el-form :model="form" :rules = "rules" label-width="144px" ref="form">
+      <!--el-form-item label="原密码" prop="opwd">
+          <el-input type="password" v-model="form.opwd"></el-input>
+      </el-form-item!-->
       <el-form-item label="新密码" prop="pwd">
           <el-input type="password" v-model="form.pwd"></el-input>
       </el-form-item>
@@ -9,12 +12,13 @@
           <el-input type="password" v-model="form.apwd"></el-input>
       </el-form-item>
       <el-form-item>
-         <el-button type="primary"> 确定 </el-button>
+         <el-button type="primary" @click="modify" :disabled="disable"> 确定 </el-button>
       </el-form-item>
   </el-form>
 </div>
 </template>
 <script>
+import authSrv from '@/api/auth.js'
 export default {
     name:'PwdChange',
     data() {
@@ -49,6 +53,19 @@ export default {
                 ]
             }
         };
+    },
+    computed:{
+        disable(){
+            return (this.form.pwd==='')||(this.form.pwd!=this.form.apwd)
+        }
+    },
+    methods: {
+        jump(context){
+            context.$router.push('./login')
+        },
+        modify(){
+            authSrv.modify(this,this.jump)
+        }
     }
 }
 </script>
