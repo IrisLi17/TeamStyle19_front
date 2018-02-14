@@ -55,7 +55,10 @@ export default new Router({
     {
       path: '/PwdChange',
       name: 'PwdChange',
-      component: PwdChange
+      component: PwdChange,
+      meta: {
+        requireAuth: true
+      }
     }
   ]
 })

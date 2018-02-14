@@ -4,7 +4,7 @@
         <el-menu-item index="2" route="/home"> fakehome </el-menu-item>
         <el-menu-item index="3" route="/file"> 文件 </el-menu-item>
         <el-menu-item index="4" route="/ShowAllTeams"> team </el-menu-item>
-        <el-menu-item v-if="hasLogin" index="5" id="profile">
+        <el-menu-item v-if="hasLogin" index="5" id="profile" route="/">
             <!--el-dropdown @command="logout">
                 <span class="el-dropdown-link">
                     <img :src="profile">
@@ -14,11 +14,11 @@
                     <el-dropdown-item>log out</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown-->
-            <el-dropdown> 
+            <el-dropdown @command="handleJump"> 
                 <span> {{username}} </span>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>修改密码</el-dropdown-item>
-                    <el-dropdown-item>我的队伍</el-dropdown-item>
+                    <el-dropdown-item command="a">修改密码</el-dropdown-item>
+                    <el-dropdown-item command="b">我的队伍</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
             <router-link to="/"><span @click = "logout"> 退出 </span></router-link>
@@ -56,6 +56,13 @@
                 console.log('trigger logout')
                 this.hasLogin = false
                 authSrv.logout(this)
+            },
+            handleJump(command){
+                if(command === "a"){
+                    this.$router.push('/PwdChange')
+                } else if(command === "b"){
+                    this.$router.push('/')
+                }
             }
         }
     }
