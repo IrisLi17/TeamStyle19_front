@@ -22,9 +22,12 @@
     </template>
 
 	</vue-clip>
+	<!--el-button @click="gethead">gethead</el-button>
+	<img :src="headurl" style="height: 36px"!-->
 </template>
 
 <script>
+	import authSrv from '@/api/auth.js'
   export default {
 		name: 'upload',
 
@@ -40,14 +43,19 @@
 					//acceptedFiles: ['C++/cpp,c,cxx,h,hxx']
 				},
 				files: null,
-				isProfile: true
+				isProfile: true,
+				//headurl: null
       }
 		},
 		methods: {
 			sending (file, xhr, formData) {
 				formData.append('userid',localStorage.getItem('teamstyle_id'))
 				formData.append('headpic',this.isProfile)
-      }
+			},
+			/*gethead() {
+				console.log('click')
+				authSrv.getHeadpic(this)
+			}*/
 		}
 
   }

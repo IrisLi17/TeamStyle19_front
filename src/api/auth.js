@@ -85,10 +85,21 @@ export default {
     context.$store.commit('setTeamindex',null)
     context.$store.commit('setisLeader',null)
   },
-  query (context, data) {
+  getHeadpic (context) {
+    const data = {
+      userid: localStorage.getItem('teamstyle_id')
+      //userid: '10'
+    }
     return context.$http({
-      url: API_URL,
-      params: data
+      url: API_URL+'headpic/',
+      method: 'post',
+      body: data
+    }).then(response => {
+      console.log('success headpic')
+      context.headurl = "data:image/jpeg;base64,"+response.body
+    }, response => {
+      console.log('fail')
+      alert('fail')
     })
   },
   modify (context, cb) {
