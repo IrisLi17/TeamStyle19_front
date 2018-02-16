@@ -8,6 +8,7 @@ import File from '@/components/file'
 import Team from '@/components/team'
 import ShowAllTeams from '@/components/ShowAllTeams'
 import PwdChange from '@/components/PwdChange'
+import upload from '@/components/upload'
 
 Vue.use(Router)
 
@@ -59,6 +60,12 @@ export default new Router({
       meta: {
         requireAuth: true
       }
-    }
+    },
+    /*for testing upload component
+    {
+      path: '/Upload',
+      name: 'Upload',
+      component: upload
+    }*/
   ]
 })

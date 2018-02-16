@@ -10,10 +10,13 @@ import store from './vuex'
 import VueResource from 'vue-resource'
 
 import VueCookies from 'vue-cookies'
+import VueClip from 'vue-clip'
+
 Vue.config.productionTip = false
 Vue.use(VueResource)
 Vue.use(ElementUI)
 Vue.use(VueCookies)
+Vue.use(VueClip)
 
 /* eslint-disable no-new */
 new Vue({
@@ -57,7 +60,7 @@ Vue.http.options.emulateJSON = true
 
 // 设置 X-CSRFToken
 Vue.http.interceptors.push(function(request, next) {
-  if(request.url == '/backend/students/reg/'||request.url == '/backend/students/login/'){
+  if(request.url == '/backend/test'){
     //console.log(request)
     //request.META["CSRF_COOKIE_USED"] = 'True'
     //request.headers.set('X-CSRFToken', 'qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwer')
