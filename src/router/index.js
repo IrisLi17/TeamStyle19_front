@@ -9,6 +9,7 @@ import Team from '@/components/team'
 import ShowAllTeams from '@/components/ShowAllTeams'
 import PwdChange from '@/components/PwdChange'
 import upload from '@/components/upload'
+import MyTeam from '@/components/MyTeam'
 
 Vue.use(Router)
 
@@ -66,6 +67,11 @@ export default new Router({
       path: '/Upload',
       name: 'Upload',
       component: upload
-    }*/
+    },*/
+    {
+      path: '/MyTeam',
+      name: 'MyTeam',
+      component: MyTeam
+    }
   ]
 })

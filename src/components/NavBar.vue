@@ -37,7 +37,6 @@
                 activeIndex:'1',
                 router:Boolean(1),
                 profile: avatar,
-                //username: '123'
             }
         },
         computed: {
@@ -61,7 +60,7 @@
                 if(command === "a"){
                     this.$router.push('/PwdChange')
                 } else if(command === "b"){
-                    this.$router.push('/')
+                    this.$router.push('/MyTeam')
                 }
             }
         }
