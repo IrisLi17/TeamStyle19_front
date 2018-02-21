@@ -48,17 +48,24 @@ export default {
       userid: localStorage.getItem('teamstyle_id')
     }
     context.$http({
-      url: TEAM_URL,
-      method: 'get',
-      params: localStorage.getItem('teamstyle_id'), // userid
+      url: TEAM_URL+'oneteam/',
+      method: 'POST',
+      body: data // userid
     }).then(response => {
-      console.log(response.body)
-      context.team = response.body
-      //context.memberid
+      //console.log(response.body)
+      if(response.body.success == true){
+        context.team = []
+        for(var i = 1;i<response.body.scale;i++){
+          if(response.body["member"+i]!=null) 
+            context.team.push({member:response.body["member"+i]})
+        }
+      } else{
+        alert(response.body.message)
+      }
+      console.log(context.team)
     }, response => {
       console.log(response.status)
-      context.team = [{teammember:'fake1'},{teammember:'fake2'},{teammember:'fake3'}]
-      context.memberid = [100,101,102]
+      context.team = [{member:'fake1'},{member:'fake2'},{member:'fake3'}]
     })
   },
 
@@ -146,16 +153,13 @@ export default {
     //if(context.test.id1!=null) membersid.push(context.test.id1)
     //if(context.test.id2!=null) membersid.push(context.test.id2)
     //if(context.test.id3!=null) membersid.push(context.test.id3)
-    //const data = {
-    //  //userid: localStorage.getItem('teamstyle_id'),
-    //  userid: membersid[0]
-    //}
+    console.log(data)
     context.$http({
       url: TEAM_URL+'exit/',
       method: 'post',
-      body: data
+      body: {name:data}
     }).then(response => {
-      //context.myteam = response.body.teams
+      console.log(response)
       alert('success')
       if(typeof cb == 'function'){
         cb(context)
