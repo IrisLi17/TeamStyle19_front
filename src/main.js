@@ -18,6 +18,11 @@ Vue.use(ElementUI)
 Vue.use(VueCookies)
 Vue.use(VueClip)
 
+Vue.http.options.emulateJSON = true
+Vue.http.options.headers = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+}
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
