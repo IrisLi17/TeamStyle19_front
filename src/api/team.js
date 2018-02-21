@@ -44,15 +44,21 @@ export default {
   },
 
   showMyteam (context) {
+    const data = {
+      userid: localStorage.getItem('teamstyle_id')
+    }
     context.$http({
       url: TEAM_URL,
       method: 'get',
       params: localStorage.getItem('teamstyle_id'), // userid
     }).then(response => {
-      console.log('success')
-      context.myteam = response.body.teams
+      console.log(response.body)
+      context.team = response.body
+      //context.memberid
     }, response => {
       console.log(response.status)
+      context.team = [{teammember:'fake1'},{teammember:'fake2'},{teammember:'fake3'}]
+      context.memberid = [100,101,102]
     })
   },
 
@@ -69,7 +75,7 @@ export default {
         }
       }).then(response => {
         console.log(response.body)
-        //context.isLeader = response.body.isleader
+        context.isleader = response.body.isleader
       }, response => {
         console.log(response.status)
       })
@@ -135,15 +141,15 @@ export default {
     }
   },
 
-  removeMember (context) {
-    var membersid = []
-    if(context.test.id1!=null) membersid.push(context.test.id1)
-    if(context.test.id2!=null) membersid.push(context.test.id2)
-    if(context.test.id3!=null) membersid.push(context.test.id3)
-    const data = {
-      //userid: localStorage.getItem('teamstyle_id'),
-      userid: membersid[0]
-    }
+  removeMember (context, data, cb) {
+    //var membersid = []
+    //if(context.test.id1!=null) membersid.push(context.test.id1)
+    //if(context.test.id2!=null) membersid.push(context.test.id2)
+    //if(context.test.id3!=null) membersid.push(context.test.id3)
+    //const data = {
+    //  //userid: localStorage.getItem('teamstyle_id'),
+    //  userid: membersid[0]
+    //}
     context.$http({
       url: TEAM_URL+'exit/',
       method: 'post',
@@ -151,6 +157,9 @@ export default {
     }).then(response => {
       //context.myteam = response.body.teams
       alert('success')
+      if(typeof cb == 'function'){
+        cb(context)
+      }
     }, response => {
       alert('fail')
     })

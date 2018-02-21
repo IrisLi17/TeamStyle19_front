@@ -21,12 +21,12 @@
       </template>
     </el-table-column>
   </el-table>
-  <div :model="test">
+  <!--div :model="test">
       <input v-model="test.id1">
       <input v-model="test.id2">
       <input v-model="test.id3">
   </div>
-  <el-button @click="handleClear">delete</el-button>
+  <el-button @click="handleClear">delete</el-button!-->
 </div>
 </template>
 
@@ -38,11 +38,11 @@ export default {
       return{
           team: [],
           teamid: [],
-          test: {
+          /*test: {
               id1: null,
               id2: null,
               id3: null
-          }
+          }*/
       }
   },
   created () {
@@ -58,9 +58,9 @@ export default {
           this.$store.commit('setisLeader',true)
           this.$router.push('/team')
       },
-      handleClear(){
+      /*handleClear(){
           teamSrv.removeMember(this)
-      }
+      }*/
   }
 }
 </script>
