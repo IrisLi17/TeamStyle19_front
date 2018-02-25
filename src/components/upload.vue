@@ -1,8 +1,10 @@
 <template>
+<div>
 	<vue-clip :options="options" :on-sending="sending">
     <template slot="clip-uploader-action">
       <div>
-        <el-button class="dz-message">点击或拖拽到此处开始上传</el-button>
+				<i class="el-icon-upload uploader-icon dz-message"></i>
+        <!--el-button class="dz-message">点击或拖拽到此处开始上传</el-button!-->
       </div>
     </template>
 
@@ -22,12 +24,14 @@
     </template>
 
 	</vue-clip>
-	<!--el-button @click="gethead">gethead</el-button>
-	<img :src="headurl" style="height: 36px"!-->
+	<el-button @click="testfile">getfile</el-button>
+	<!--img :src="headurl" style="height: 36px"!-->
+</div>
 </template>
 
 <script>
 	import authSrv from '@/api/auth.js'
+	import downloadSrv from '@/api/download.js'
   export default {
 		name: 'upload',
 
@@ -40,15 +44,19 @@
     				limit: 0.8,
     				message: 'Your file size is greater than the max file size'
   				},
-					//acceptedFiles: ['C++/cpp,c,cxx,h,hxx']
+					/*acceptedFiles: {
+						extensions: ['text/plain','text/cxx'],
+						message: 'You are uploading an invalid file'
+					}*/
 				},
 				files: null,
-				isProfile: true,
+				isProfile: false,
 				//headurl: null
       }
 		},
 		methods: {
 			sending (file, xhr, formData) {
+				console.log(file.type)
 				formData.append('userid',localStorage.getItem('teamstyle_id'))
 				formData.append('headpic',this.isProfile)
 			},
@@ -56,7 +64,34 @@
 				console.log('click')
 				authSrv.getHeadpic(this)
 			}*/
+			testfile () {
+				const test = {
+					userid: 5,
+					filename: 'std.cpp'
+				}
+				downloadSrv.testfile(this,test)
+			}
 		}
 
   }
 </script>
+
+<style scoped>
+  .uploader-icon{
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+		font-size: 84px;
+    color: #8c939d;
+    width: 278px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .uploader-icon:hover {
+    border-color: #409EFF;
+  }
+  
+</style>

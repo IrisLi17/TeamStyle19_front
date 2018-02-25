@@ -62,12 +62,12 @@ export default new Router({
         requireAuth: true
       }
     },
-    /*for testing upload component
+    //for testing upload component
     {
       path: '/Upload',
       name: 'Upload',
       component: upload
-    },*/
+    },
     {
       path: '/MyTeam',
       name: 'MyTeam',
