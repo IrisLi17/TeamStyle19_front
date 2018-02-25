@@ -83,6 +83,7 @@ export default {
       }).then(response => {
         console.log(response.body)
         context.isleader = response.body.isleader
+        context.$store.commit('setisLeader',response.body.isleader)
       }, response => {
         console.log(response.status)
       })
