@@ -1,14 +1,14 @@
 <template>
   <div id="wrap">
-  <el-form :model="form" :rules="rules" ref="form" label-position="left" label-width="80px">
-    <el-form-item label="邮箱" prop="email">
-      <el-input v-model="form.email"></el-input>
+  <el-form :model="form" :rules="rules" ref="form">
+    <el-form-item prop="email">
+      <el-input v-model="form.email" placeholder="邮箱"></el-input>
     </el-form-item>
-    <el-form-item label="用户名" prop="username">
-      <el-input v-model="form.username"></el-input>
+    <el-form-item prop="username">
+      <el-input v-model="form.username" placeholder="用户名"></el-input>
     </el-form-item>
-    <el-form-item label="密码" prop="password">
-      <el-input v-model="form.password" type="password"></el-input>
+    <el-form-item prop="password">
+      <el-input v-model="form.password" type="password" placeholder="密码"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="register" size="medium">注册</el-button>
@@ -78,5 +78,14 @@ button {
 }
 p {
   font-size: 12px;
+}
+@media screen and (max-width: 960px) {
+  #wrap{
+    margin: 40px 0;
+    width: 100%;
+  }
+  form{
+    margin: 0 10%;
+  }
 }
 </style>

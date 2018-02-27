@@ -6,15 +6,6 @@
         <el-menu-item index="3" route="/file"> 文件 </el-menu-item>
         <el-menu-item index="4" route="/ShowAllTeams"> team </el-menu-item>
         <el-menu-item v-if="hasLogin" index="5" id="profile" route="/">
-            <!--el-dropdown @command="logout">
-                <span class="el-dropdown-link">
-                    <img :src="profile">
-                    <i class="el-icon-arrow-down el-icon--right"></i>
-                </span>
-                <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>log out</el-dropdown-item>
-                </el-dropdown-menu>
-            </el-dropdown-->
             <el-dropdown @command="handleJump"> 
                 <span> {{username}} </span>
                 <el-dropdown-menu slot="dropdown">
@@ -182,8 +173,5 @@ span {
             }
         }
     }
-    /*.popper__arrow{
-        display:none;
-    }*/
 }
 </style>
