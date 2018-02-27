@@ -2,7 +2,7 @@
   <ul>
     <el-card v-for="item in files" :key="item.id">
       <h2> {{item.title}} </h2>
-      <p> {{item.intro}} </p>
+      <!--p> {{item.intro}} </p!-->
       <el-button type="primary"><a :href="item.address">download</a></el-button>
    </el-card>
   </ul>
