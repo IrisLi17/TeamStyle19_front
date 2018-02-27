@@ -31,7 +31,7 @@
 
 <script>
 	import authSrv from '@/api/auth.js'
-	import downloadSrv from '@/api/download.js'
+	/*import downloadSrv from '@/api/download.js'*/
   export default {
 		name: 'upload',
 
