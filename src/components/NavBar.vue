@@ -28,17 +28,17 @@
     </el-menu>
     <el-menu router class="mobile" mode="horizontal">
         <el-menu-item  id="mobile-menu">
-            <img src ='/static/img/menu.png' @click="show=!show">
+            <img src ='/static/img/menu.png' @click="handleClick">
             <transition
                 name="dropdown-animate"
                 enter-active-class = "animated slideInDown"
                 leave-active-class = "animated slideOutUp">
                 <ul v-show="show" class="mydropdown">
-                    <li> index </li>
-                    <li> fakehome </li>
-                    <li> 文件 </li>
-                    <li> 队伍 </li>
-                    <li> <img src='/static/img/close.png' @click="show=!show"></li>
+                    <li @click="handleClick"><router-link to="/"> index </router-link></li>
+                    <li @click="handleClick"><router-link to="/home"> fakehome </router-link></li>
+                    <li @click="handleClick"><router-link to="/file"> 文件 </router-link></li>
+                    <li @click="handleClick"><router-link to="/team"> 队伍 </router-link></li>
+                    <li @click="handleClick"> <img src='/static/img/close.png'></li>
                 </ul>
             </transition>
         </el-menu-item>
@@ -67,7 +67,7 @@
                 activeIndex:'1',
                 router:Boolean(1),
                 profile: avatar,
-                show: true
+                show: false
             }
         },
         computed: {
@@ -93,6 +93,9 @@
                 } else if(command === "b"){
                     this.$router.push('/MyTeam')
                 }
+            },
+            handleClick(){
+                this.show=!this.show
             }
         }
     }
@@ -155,20 +158,27 @@ span {
         width: 100vw;
         padding: 0;
         color: white;
-        background-color: black;
+        background-color: hsla(0,0,0,0.85);
         z-index: 2000;
         position: absolute;
         top: 0;
         list-style-type: none;
+        li:first-child {
+            margin: 20% 0 0 0;
+        }
+        li:nth-last-child(1),li:nth-last-child(2) {
+            border: none;
+        }
         li{
             height: 100px;
             line-height: 100px;
             border-bottom: {
                 color: white;
-                width: 1px;
+                width: 1px !important;
+                style: solid;
             }
             img {
-                margin: calc(50% - 15px) auto;
+                margin: 15% auto;
             }
         }
     }
