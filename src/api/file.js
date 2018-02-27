@@ -1,17 +1,23 @@
-import { error } from "util";
-
-const FILE_URL = 'api/files'
+const FILE_URL = 'backend/download/'
 export default {
   name: 'fileSrv',
   loadFile (context) {
     console.log('loading')
     return context.$http({
-      url: FILE_URL,
+      url: FILE_URL+'allfiles',
+      method: 'get'
     }).then(response => {
-      console.log('success')
-      context.data.title = response.title
-      context.data.intro = response.intro
-      context.data.address = response.address
+      alert('success')
+      console.log(response.body["index"])
+      context.files = []
+      for (var i=0;i<response.body["index"].length;i++){
+        var onefile = response.body["index"][i]
+        context.files.push({
+          id: i,
+          title: onefile,
+          address: FILE_URL +'file/'+ onefile,
+        })
+      }
     }, response => {
       console.log('gg')
       context.title = 'faketitle'

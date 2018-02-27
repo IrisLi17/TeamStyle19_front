@@ -24,14 +24,13 @@
     </template>
 
 	</vue-clip>
-	<el-button @click="testfile">getfile</el-button>
+	<!--el-button><a href="/backend/download/code">getfile</a></el-button!-->
 	<!--img :src="headurl" style="height: 36px"!-->
 </div>
 </template>
 
 <script>
 	import authSrv from '@/api/auth.js'
-	/*import downloadSrv from '@/api/download.js'*/
   export default {
 		name: 'upload',
 
@@ -64,13 +63,6 @@
 				console.log('click')
 				authSrv.getHeadpic(this)
 			}*/
-			testfile () {
-				const test = {
-					userid: 5,
-					filename: 'std.cpp'
-				}
-				downloadSrv.testfile(this,test)
-			}
 		}
 
   }
