@@ -28,7 +28,7 @@
                     <li @click="handleClick"><router-link to="/"> index </router-link></li>
                     <li @click="handleClick"><router-link to="/home"> fakehome </router-link></li>
                     <li @click="handleClick"><router-link to="/file"> 文件 </router-link></li>
-                    <li @click="handleClick"><router-link to="/team"> 队伍 </router-link></li>
+                    <li @click="handleClick"><router-link to="/ShowAllTeams"> 队伍 </router-link></li>
                     <li @click="handleClick"> <img src='/static/img/close.png'></li>
                 </ul>
             </transition>
