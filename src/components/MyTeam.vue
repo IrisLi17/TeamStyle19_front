@@ -1,7 +1,8 @@
 <template>
 <div>
-    <el-table :data="team" stripe border>
-        <el-table-column type="index">
+    <h1>{{teamname}}</h1>
+    <el-table :data="team" :span-method="arraySpanMethod" stripe border>
+        <el-table-column prop="leader" label="队长" align="center">
         </el-table-column>
         <el-table-column prop="member" label="队员" align="center">
         </el-table-column>
@@ -23,7 +24,8 @@ export default {
       return {
           team: [],
           //memberid: [],
-          isleader: true
+          isleader: true,
+          teamname: null
       }
   },
   created(){
@@ -37,7 +39,17 @@ export default {
   methods: {
       handleDelete(index, row){          
         teamSrv.removeMember(this,this.team[index].member,teamSrv.showMyteam)          
-      }
+      },
+      arraySpanMethod({ row, column, rowIndex, columnIndex }) {
+        if ( columnIndex == 0 ){
+            if( rowIndex == 0){
+                console.log(row)
+                return [this.team.length,1]
+            } else if( rowIndex >0){
+                return [0,0]
+            }
+        }
+      },
   }
 }
 </script>
@@ -48,5 +60,9 @@ div{
     max-width: 600px;
     min-width: 480px;
     margin: 40px auto;
+}
+h1{
+    text-align: center;
+    font-size: 24px;
 }
 </style>

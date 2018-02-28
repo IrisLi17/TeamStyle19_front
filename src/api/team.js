@@ -54,11 +54,13 @@ export default {
     }).then(response => {
       //console.log(response.body)
       if(response.body.success == true){
+        context.teamname = response.body.teamname
         context.team = []
         for(var i = 1;i<response.body.scale;i++){
           if(response.body["member"+i]!=null) 
             context.team.push({member:response.body["member"+i]})
         }
+        context.team[0].leader = response.body.leader
       } else{
         alert(response.body.message)
       }
