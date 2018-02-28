@@ -43,7 +43,7 @@ export default {
           {required: true, validator: mailcheck, trigger: 'blur,change'}
         ],
         username: [
-          {required: true, message: '请输入用户名', trigger:'blur'}
+          {required: true, message: '请输入用户名'}
         ],
         password: [
           {required: true, min: 8, max: 20, message: '请输入8-20位密码', trigger:'blur,change'}
