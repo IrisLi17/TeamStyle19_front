@@ -11,9 +11,9 @@
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="a">修改密码</el-dropdown-item>
                     <el-dropdown-item command="b">我的队伍</el-dropdown-item>
+                    <el-dropdown-item command="c">退出</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
-            <router-link to="/"><span @click = "logout"> 退出 </span></router-link>
         </el-menu-item>
         <el-menu-item v-else index="5" id="log" route="/login"> 登录|注册 </el-menu-item>
     </el-menu>
@@ -39,9 +39,10 @@
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="a">修改密码</el-dropdown-item>
                     <el-dropdown-item command="b">我的队伍</el-dropdown-item>
+                    <el-dropdown-item command="c">退出</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
-            <router-link to="/"><span @click = "logout"> 退出 </span></router-link>
+            <!--router-link to="/"><span @click = "logout"> 退出 </span></router-link-->
         </el-menu-item>  
         <el-menu-item v-else index="5" id="log" route="/login"> 登录|注册 </el-menu-item>  
     </el-menu>
@@ -83,6 +84,9 @@
                     this.$router.push('/PwdChange')
                 } else if(command === "b"){
                     this.$router.push('/MyTeam')
+                } else if(command === "c"){
+                    this.logout();
+                    this.$router.push('/')
                 }
             },
             handleClick(){
@@ -116,7 +120,7 @@ span {
     margin-left:10px;
     color: black;
 }
-@media screen and (max-width:960px) {
+@media screen and (max-width:720px) {
     ul {
         height: 40px;
     }
@@ -134,14 +138,23 @@ span {
     }
     #log {
         line-height: 40px;
-        margin-right: 10px;
+    }
+    #profile, .mobile-dropdown {
+        position: absolute;
+        right: 0;
+        height: 100%;
+        span {
+            display:block;
+            margin: auto 10px;
+            line-height: 40px;
+        }
     }
     .el-dropdown{
         position: absolute;
         top: 0;
     }
     #mobile-menu {
-        height: 40px;
+        height: 10%;
         border: none;
     }
     .mydropdown {
@@ -160,6 +173,9 @@ span {
         li:nth-last-child(1),li:nth-last-child(2) {
             border: none;
         }
+        li:nth-last-child(1){
+            padding: 10% 0 0 0;
+        }
         li{
             height: 100px;
             line-height: 100px;
@@ -169,7 +185,7 @@ span {
                 style: solid;
             }
             img {
-                margin: 15% auto;
+                margin: 0 auto;
             }
         }
     }

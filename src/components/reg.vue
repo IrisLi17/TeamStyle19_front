@@ -79,7 +79,7 @@ button {
 p {
   font-size: 12px;
 }
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 720px) {
   #wrap{
     margin: 40px 0;
     width: 100%;
