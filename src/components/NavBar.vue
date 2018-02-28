@@ -24,7 +24,7 @@
                 name="dropdown-animate"
                 enter-active-class = "animated slideInDown"
                 leave-active-class = "animated slideOutUp">
-                <ul v-show="show" class="mydropdown">
+                <ul v-show="show" class="menu-dropdown">
                     <li @click="handleClick"><router-link to="/"> index </router-link></li>
                     <li @click="handleClick"><router-link to="/home"> fakehome </router-link></li>
                     <li @click="handleClick"><router-link to="/file"> 文件 </router-link></li>
@@ -34,7 +34,7 @@
             </transition>
         </el-menu-item>
         <el-menu-item v-if="hasLogin" index="5" id="profile" route="/">
-            <el-dropdown @command="handleJump" class="mobile-dropdown"> 
+            <el-dropdown @command="handleJump" class="user-dropdown"> 
                 <span> {{username}} </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="a">修改密码</el-dropdown-item>
@@ -139,15 +139,15 @@ span {
     #log {
         line-height: 40px;
     }
-    #profile, .mobile-dropdown {
+    #profile, .user-dropdown {
         position: absolute;
         right: 0;
         height: 100%;
         span {
-            display:block;
-            margin: auto 10px;
-            line-height: 40px;
-        }
+        display:block;
+        margin: auto 10px;
+        line-height: 40px;
+    }
     }
     .el-dropdown{
         position: absolute;
@@ -157,7 +157,7 @@ span {
         height: 10%;
         border: none;
     }
-    .mydropdown {
+    .menu-dropdown {
         height: 100vh;
         width: 100vw;
         padding: 0;
