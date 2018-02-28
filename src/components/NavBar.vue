@@ -6,7 +6,7 @@
         <el-menu-item index="3" route="/file"> 文件 </el-menu-item>
         <el-menu-item index="4" route="/ShowAllTeams"> team </el-menu-item>
         <el-menu-item v-if="hasLogin" index="5" id="profile" route="/">
-            <el-dropdown @command="handleJump"> 
+            <el-dropdown @command="handleJump" trigger="click"> 
                 <span> {{username}} </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="a">修改密码</el-dropdown-item>
@@ -19,7 +19,7 @@
     </el-menu>
     <el-menu router class="mobile" mode="horizontal">
         <el-menu-item  id="mobile-menu">
-            <img src ='/static/img/menu.png' @click="handleClick">
+            <img src ='/static/img/menu.png' class="close" @click="handleClick">
             <transition
                 name="dropdown-animate"
                 enter-active-class = "animated slideInDown"
@@ -34,7 +34,7 @@
             </transition>
         </el-menu-item>
         <el-menu-item v-if="hasLogin" index="5" id="profile" route="/">
-            <el-dropdown @command="handleJump" class="user-dropdown"> 
+            <el-dropdown @command="handleJump" class="user-dropdown" trigger="click"> 
                 <span> {{username}} </span>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="a">修改密码</el-dropdown-item>
@@ -121,15 +121,10 @@ span {
     color: black;
 }
 @media screen and (max-width:720px) {
-    ul {
+    .el-menu {
         height: 40px;
     }
-    li{
-        height: 40px;
-        padding: 0;
-        border: none;
-        text-align: center;
-    }
+    
     img {
         height: 30px;
         width: 30px;
@@ -156,6 +151,10 @@ span {
     #mobile-menu {
         height: 10%;
         border: none;
+        .close{
+            position: absolute;
+            left: 0;
+        }
     }
     .menu-dropdown {
         height: 100vh;
@@ -166,6 +165,7 @@ span {
         z-index: 2000;
         position: absolute;
         top: 0;
+        left:0;
         list-style-type: none;
         li:first-child {
             margin: 20% 0 0 0;
@@ -177,8 +177,10 @@ span {
             padding: 10% 0 0 0;
         }
         li{
+            padding: 0;
             height: 100px;
             line-height: 100px;
+            text-align: center;
             border-bottom: {
                 color: white;
                 width: 1px !important;
