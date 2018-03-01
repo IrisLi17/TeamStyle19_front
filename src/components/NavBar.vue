@@ -156,6 +156,11 @@ span {
             left: 0;
         }
     }
+    .mobile {
+        li:nth-last-child(1) {
+            padding-right: 5px;
+        }
+    }
     .menu-dropdown {
         height: 100vh;
         width: 100vw;

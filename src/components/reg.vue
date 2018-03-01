@@ -81,7 +81,7 @@ p {
 }
 @media screen and (max-width: 720px) {
   #wrap{
-    margin: 40px 0;
+    margin: 40% auto;
     width: 100%;
   }
   form{
