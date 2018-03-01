@@ -5,7 +5,7 @@
         <el-menu-item index="2" route="/home"> fakehome </el-menu-item>
         <el-menu-item index="3" route="/file"> 文件 </el-menu-item>
         <el-menu-item index="4" route="/ShowAllTeams"> team </el-menu-item>
-        <el-menu-item v-if="hasLogin" index="5" id="profile" route="/">
+        <el-menu-item v-if="hasLogin" id="profile">
             <el-dropdown @command="handleJump" trigger="click"> 
                 <span> {{username}} </span>
                 <el-dropdown-menu slot="dropdown">
@@ -33,7 +33,7 @@
                 </ul>
             </transition>
         </el-menu-item>
-        <el-menu-item v-if="hasLogin" index="5" id="profile" route="/">
+        <el-menu-item v-if="hasLogin" id="profile">
             <el-dropdown @command="handleJump" class="user-dropdown" trigger="click"> 
                 <span> {{username}} </span>
                 <el-dropdown-menu slot="dropdown">

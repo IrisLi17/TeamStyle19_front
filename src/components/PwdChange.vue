@@ -1,15 +1,15 @@
 <template>
 <div id="wrap">
   <h3>修改密码</h3>
-  <el-form :model="form" :rules = "rules" label-width="144px" ref="form">
+  <el-form :model="form" :rules = "rules" ref="form">
       <!--el-form-item label="原密码" prop="opwd">
           <el-input type="password" v-model="form.opwd"></el-input>
       </el-form-item!-->
-      <el-form-item label="新密码" prop="pwd">
-          <el-input type="password" v-model="form.pwd"></el-input>
+      <el-form-item prop="pwd">
+          <el-input type="password" v-model="form.pwd" placeholder="新密码" clearable></el-input>
       </el-form-item>
-      <el-form-item label="请再次输入新密码" prop="apwd">
-          <el-input type="password" v-model="form.apwd"></el-input>
+      <el-form-item prop="apwd">
+          <el-input type="password" v-model="form.apwd" placeholder="请再次输入新密码" clearable></el-input>
       </el-form-item>
       <el-form-item>
          <el-button type="primary" @click="modify" :disabled="disable"> 确定 </el-button>
@@ -77,5 +77,16 @@ export default {
 }
 button {
     width: 100%;
+}
+h3 {
+    text-align: center;
+}
+@media screen and (max-width:720px) {
+    #wrap{
+        max-width: 480px;
+        min-width: 240px;
+        margin: 0 20%;
+        margin-top: 40%;
+    }
 }
 </style>
