@@ -1,8 +1,8 @@
 <template>
     <div id="wrap">
-        <el-form :model="form" :rules="rules" ref="form"  label-width="100px" label-position="left">
+        <el-form :model="form" :rules="rules" ref="form" label-position="left">
             <h3>组队</h3>
-            <el-form-item label="是否为队长">
+            <!--el-form-item label="是否为队长">
                 <el-switch 
                     v-model="form.isteamleader" 
                     disabled
@@ -10,16 +10,16 @@
                     inactive-color="#ff4949"
                     active-text="是"
                     inactive-text="否">
-                </el-switch>
+                </el-switch-->
             </el-form-item>
-            <el-form-item v-if="form.isteamleader" label="队伍名称" prop="teamname">
-                <el-input v-model="form.teamname"></el-input>
+            <el-form-item v-if="form.isteamleader" prop="teamname">
+                <el-input v-model="form.teamname" placeholder="队伍名称"></el-input>
             </el-form-item>
-            <el-form-item v-if="!form.isteamleader" label="邀请码" prop="invitecode">
-                <el-input v-model="form.invitecode"></el-input>
+            <el-form-item v-if="!form.isteamleader" prop="invitecode">
+                <el-input v-model="form.invitecode" placeholder="邀请码"></el-input>
             </el-form-item>
-            <el-form-item v-else label="设置邀请码" prop="invitecode">
-                <el-input v-model="form.invitecode"></el-input>
+            <el-form-item v-else prop="invitecode">
+                <el-input v-model="form.invitecode" placeholder="设置邀请码"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="onSubmit">确定</el-button>
