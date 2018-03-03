@@ -86,7 +86,7 @@ h3 {
         max-width: 480px;
         min-width: 240px;
         margin: 0 20%;
-        margin-top: 40%;
+        margin-top: 30%;
     }
 }
 </style>
