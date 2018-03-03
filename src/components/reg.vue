@@ -43,7 +43,8 @@ export default {
           {required: true, validator: mailcheck, trigger: 'blur,change'}
         ],
         username: [
-          {required: true, message: '请输入用户名'}
+          {required: true, message: '请输入用户名'},
+          {max: 16, message:'用户名长度不能超过16位'}
         ],
         password: [
           {required: true, min: 8, max: 20, message: '请输入8-20位密码', trigger:'blur,change'}
