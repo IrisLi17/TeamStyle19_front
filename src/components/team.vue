@@ -10,13 +10,8 @@
                     inactive-color="#ff4949"
                     active-text="是"
                     inactive-text="否">
-<<<<<<< HEAD
                 </el-switch-->
             <!--/el-form-item-->
-=======
-                </el-switch>
-            </el-form-item!-->
->>>>>>> 3429aa960364257443b5d78d003e0cfa4575fff0
             <el-form-item v-if="form.isteamleader" prop="teamname">
                 <el-input v-model="form.teamname" placeholder="队伍名称"></el-input>
             </el-form-item>
