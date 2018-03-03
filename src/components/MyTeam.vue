@@ -56,5 +56,11 @@ export default {
 
 
 <style lang="scss" scoped>
-
+section {
+    height: calc(100vh - 61px);
+    width: 100%;
+}
+aside ul {
+    height: 100%;
+}
 </style>

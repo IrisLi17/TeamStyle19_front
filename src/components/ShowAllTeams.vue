@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="wrap">
     <el-button icon="el-icon-plus" type="primary" size="medium" @click="handleCreate">创建队伍</el-button>
   <el-table :data='team' stripe>
       <el-table-column type="index" align="center" header-align="center">
@@ -66,9 +66,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div{
+#wrap {
     max-width: 600px;
     min-width: 480px;
     margin: 40px auto;
+}
+@media screen and (max-width: 720px){
+#wrap {
+    width: 80%;
+    min-width: 400px;
+}
 }
 </style>

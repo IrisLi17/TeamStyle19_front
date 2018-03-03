@@ -11,7 +11,7 @@
                     active-text="是"
                     inactive-text="否">
                 </el-switch-->
-            </el-form-item>
+            <!--/el-form-item-->
             <el-form-item v-if="form.isteamleader" prop="teamname">
                 <el-input v-model="form.teamname" placeholder="队伍名称"></el-input>
             </el-form-item>
