@@ -1,5 +1,5 @@
-const TEAM_URL = 'backend/teams/'
-const USER_URL = 'backend/students/' // 后可再加子域名
+const TEAM_URL = '/backend/teams/'
+const USER_URL = '/backend/students/' // 后可再加子域名
 
 export default {
   name: 'teamSrv',
@@ -76,11 +76,16 @@ export default {
       userid: localStorage.getItem('teamstyle_id')
     }
     context.$http({
-      url: '',
+      url: TEAM_URL+'score/',
       method: 'post',
       body: data
     }).then(response => {
-      //context.line = response.body.xx
+      context.line.xAxis.data = response.body.score.map(function (item) {
+        return item[0];
+    })
+      context.line.series[0].data = response.body.score.map(function (item) {
+        return item[1];
+    })
       console.log(response)
     }, response => {
       context.line.xAxis.data = ['N/A','N/A','N/A','N/A','N/A']
