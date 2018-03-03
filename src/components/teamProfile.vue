@@ -1,25 +1,24 @@
 <template>
-<div>
-    <el-container>
-        <el-aside width="100px">
-            <el-menu router mode="vertical" default-active="1">
-                <el-menu-item index="1" route="/MyTeam/profile">profile</el-menu-item>
-                <el-menu-item index="2" route="/MyTeam/pulse">pulse</el-menu-item>
-            </el-menu>
-        </el-aside>
-        <el-main>
-            <router-view></router-view>
-        </el-main>
-    </el-container>
-    
-</div>
+  <div>
+      <h1>{{teamname}}</h1>
+        <el-table :data="team" :span-method="arraySpanMethod" stripe border>
+            <el-table-column prop="leader" label="队长" align="center">
+            </el-table-column>
+            <el-table-column prop="member" label="队员" align="center">
+            </el-table-column>
+            <el-table-column label="操作" v-if="isleader" align="center">
+                <template slot-scope="scope">
+                    <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+  </div>
 </template>
 
-
 <script>
-/*import teamSrv from '@/api/team.js'
+import teamSrv from '@/api/team.js'
 export default {
-  name: 'MyTeam',
+  name: 'teamProfile',
   data() {
       return {
           team: [],
@@ -51,10 +50,17 @@ export default {
         }
       },
   }
-}*/
+}
 </script>
 
-
 <style lang="scss" scoped>
-
+div{
+    max-width: 600px;
+    min-width: 480px;
+    margin: 40px auto;
+}
+h1{
+    text-align: center;
+    font-size: 24px;
+}
 </style>

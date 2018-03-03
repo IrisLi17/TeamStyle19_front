@@ -10,6 +10,8 @@ import ShowAllTeams from '@/components/ShowAllTeams'
 import PwdChange from '@/components/PwdChange'
 import upload from '@/components/upload'
 import MyTeam from '@/components/MyTeam'
+import teamProfile from '@/components/teamProfile'
+import teamPulse from '@/components/teamPulse'
 
 Vue.use(Router)
 
@@ -74,7 +76,21 @@ export default new Router({
     {
       path: '/MyTeam',
       name: 'MyTeam',
-      component: MyTeam
+      component: MyTeam,
+      children: [
+        {
+          path: '',
+          component: teamProfile
+        },
+        {
+          path: 'profile',
+          component: teamProfile
+        },
+        {
+          path: 'pulse',
+          component: teamPulse
+        }
+      ]
     }
   ]
 })

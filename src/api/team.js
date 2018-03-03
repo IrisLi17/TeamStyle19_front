@@ -71,6 +71,24 @@ export default {
     })
   },
 
+  getTeamPulse (context) {
+    const data = {
+      userid: localStorage.getItem('teamstyle_id')
+    }
+    context.$http({
+      url: '',
+      method: 'post',
+      body: data
+    }).then(response => {
+      //context.line = response.body.xx
+      console.log(response)
+    }, response => {
+      context.line.xAxis.data = ['N/A','N/A','N/A','N/A','N/A']
+      context.line.series[0].data = [0,0,0,0,0]
+      alert('fail')
+    })
+  },
+
   isLeader (context) {
     if(!localStorage.getItem('teamstyle_id')){
       alert('请先登录再进行操作')
