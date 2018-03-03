@@ -37,25 +37,28 @@ export default {
                     trigger: 'axis'
                 },
                 xAxis: {
-                    name: 'date',
+                    name: '对战历史',
                     data: []
                 },
-                yAxis: {},
+                yAxis: {
+                    name: 'score',
+                },
                 series: [{
                     name: 'Score',
                     type: 'line',
-                    data: []
+                    data: [],
+                    smooth: true
                 }]
             }
         }
     },
     methods: {
         onReady(instance, ECharts) {
-        console.log(instance, ECharts);
+        //console.log(instance, ECharts);
         this.loading = false
       },
         onClick(event, instance, ECharts) {
-        console.log(arguments);
+        //console.log(arguments);
       }
     }
 }
