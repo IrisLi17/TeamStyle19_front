@@ -12,7 +12,7 @@ import upload from '@/components/upload'
 import MyTeam from '@/components/MyTeam'
 import teamProfile from '@/components/teamProfile'
 import teamPulse from '@/components/teamPulse'
-import PhotoUpload from '@/components/PhotoUpload'
+// import PhotoUpload from '@/components/PhotoUpload'
 
 Vue.use(Router)
 
@@ -69,11 +69,11 @@ export default new Router({
       }
     },
     // for testing upload component
-    {
+    /* {
       path: '/Upload',
       name: 'Upload',
       component: upload
-    },
+    }, */
     {
       path: '/MyTeam',
       name: 'MyTeam',
@@ -92,8 +92,8 @@ export default new Router({
           component: teamPulse
         },
         {
-          path: 'PhotoUpload',
-          component: PhotoUpload
+          path: 'upload',
+          component: upload
         }
       ]
     }
