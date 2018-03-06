@@ -6,6 +6,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import router from './router'
 import store from './vuex'
+import VueParticles from 'vue-particles'
 // 后端接口抽象成Resource
 import VueResource from 'vue-resource'
 
@@ -17,6 +18,7 @@ Vue.use(VueResource)
 Vue.use(ElementUI)
 Vue.use(VueCookies)
 Vue.use(VueClip)
+Vue.use(VueParticles)
 
 Vue.http.options.emulateJSON = true
 Vue.http.options.headers = {
