@@ -1,14 +1,15 @@
 <template>
 <div>
-	<vue-clip :options="options" :on-sending="sending">
+	<vue-clip  :options="options" :on-sending="sending" :on-complete="gethead">
     <template slot="clip-uploader-action">
-      <div>
-				<i class="el-icon-upload uploader-icon dz-message"></i>
+      <div class="uploader-icon">
+				<img v-if="headurl" :src="headurl" class="dz-message">
+				<i v-else class="el-icon-plus dz-message"></i>
         <!--el-button class="dz-message">点击或拖拽到此处开始上传</el-button!-->
       </div>
     </template>
 
-    <template slot="clip-uploader-body" slot-scope="props">
+    <!--template slot="clip-uploader-body" slot-scope="props">
 			<div v-if="props.files.length>0">
 				<p>最后一次上传</p>
 				{{ props.files[props.files.length-1].name }} {{props.files[props.files.length - 1].status}} {{props.files[props.files.length - 1].errorMessage}}
@@ -21,11 +22,12 @@
 				暂无上传记录
 			</div>
 			
-    </template>
+    </template!-->
 
 	</vue-clip>
 	<!--el-button><a href="/backend/download/code">getfile</a></el-button!-->
-	<!--img :src="headurl" style="height: 36px"!-->
+	<!--el-button @click="gethead">gethead</el-button!-->
+	
 </div>
 </template>
 
@@ -43,15 +45,18 @@
     				limit: 0.8,
     				message: 'Your file size is greater than the max file size'
   				},
-					/*acceptedFiles: {
-						extensions: ['text/plain','text/cxx'],
+					acceptedFiles: {
+						extensions: ['image/*'],
 						message: 'You are uploading an invalid file'
-					}*/
+					}
 				},
 				files: null,
-				isProfile: false,
-				//headurl: null
+				isProfile: true,
+				headurl: null
       }
+		},
+		created(){
+			this.gethead()
 		},
 		methods: {
 			sending (file, xhr, formData) {
@@ -59,10 +64,10 @@
 				formData.append('userid',localStorage.getItem('teamstyle_id'))
 				formData.append('headpic',this.isProfile)
 			},
-			/*gethead() {
+			gethead() {
 				console.log('click')
 				authSrv.getHeadpic(this)
-			}*/
+			}
 		}
 
   }
@@ -77,13 +82,16 @@
     overflow: hidden;
 		font-size: 84px;
     color: #8c939d;
-    width: 278px;
-    height: 178px;
-    line-height: 178px;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
     text-align: center;
   }
   .uploader-icon:hover {
     border-color: #409EFF;
   }
-  
+  img{
+		height: inherit;
+		width: inherit;
+	}
 </style>

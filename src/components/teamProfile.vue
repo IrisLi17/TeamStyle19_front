@@ -1,5 +1,6 @@
 <template>
   <div>
+      <upload></upload>
       <h1>{{teamname}}</h1>
         <el-table :data="team" :span-method="arraySpanMethod" stripe border>
             <el-table-column prop="leader" label="队长" align="center">
@@ -16,9 +17,13 @@
 </template>
 
 <script>
+import upload from './upload'
 import teamSrv from '@/api/team.js'
 export default {
   name: 'teamProfile',
+  components: {
+      upload
+  },
   data() {
       return {
           team: [],
@@ -60,7 +65,7 @@ div{
     margin: 40px auto;
 }
 h1{
-    text-align: center;
+    text-align: left;
     font-size: 24px;
 }
 </style>

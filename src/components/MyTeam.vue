@@ -5,7 +5,7 @@
             <el-menu router mode="vertical" default-active="1">
                 <el-menu-item index="1" route="/MyTeam/profile">profile</el-menu-item>
                 <el-menu-item index="2" route="/MyTeam/pulse">pulse</el-menu-item>
-                <el-menu-item index="3" route="/MyTeam/upload">上传头像</el-menu-item>
+                <!--el-menu-item index="3" route="/MyTeam/upload">上传头像</el-menu-item!-->
             </el-menu>
         </el-aside>
         <el-main>

@@ -91,10 +91,7 @@ export default new Router({
           path: 'pulse',
           component: teamPulse
         },
-        {
-          path: 'upload',
-          component: upload
-        }
+        
       ]
     }
   ]
